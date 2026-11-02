@@ -1,4 +1,4 @@
-"""Leitura dos inputs congelados; sem dependências de pastas irmãs."""
+"""Read frozen inputs without dependencies on sibling folders."""
 from pathlib import Path
 import hashlib
 import pandas as pd

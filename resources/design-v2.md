@@ -1,229 +1,115 @@
-# Desenho v2: bloco C com compras, vendas e concentração por dentro dos ETFs
+# Design v2: long/short growth block with underlying concentration limits
 
-Pesquisa e revisão: 1 de novembro de 2026. Este memo propõe políticas para o
-estudo; não fixa a tolerância pessoal do investidor nem comprova percentuais
-universalmente ótimos. A implementação deve registrar os valores usados antes
-de examinar a classificação dos resultados.
+Research and review: November 1, 2026. This memo proposes study policies, not the investor's personal tolerance or universally optimal percentages. Values should be recorded before comparing outcomes. Some alternatives below document design-stage proposals; implemented values are authoritative in `pipeline/config_v2.py` and `output/design.json`.
 
-## 1. O que muda e o que permanece
+## 1. Scope and comparisons
 
-O objetivo continua sendo escolher uma carteira de ETFs para o bloco C. Os
-blocos de segurança e inflação ficam fora das variáveis de decisão, das
-garantias e do financiamento. Os filtros de 60 retornos mensais completos,
-mediana diária negociada de USD 1 milhão e pelo menos 100 observações nos seis
-meses anteriores foram aprovados pelo usuário e permanecem causais.
+Choose ETFs and weights for block C. Safety and inflation blocks remain outside decision variables, collateral and financing. Approved filters are 60 complete monthly returns, median daily dollar volume of USD 1 million and at least 100 observations in the prior six months. These filters use information available at the signal.
 
-Permitir posições negativas aumenta o conjunto de alternativas. Não impõe
-uma posição vendida mínima. Se os custos e os limites fizerem a solução ótima
-ficar comprada, esse resultado é legítimo. Não introduzir previsões ou pesos
-manualmente para fazer aparecer uma venda.
+Negative weights enlarge the feasible set without imposing a minimum short position. A long-only optimum is legitimate if estimates, costs and constraints favor it; forecasts or weights must not be manipulated to manufacture shorts.
 
-A comparação principal passa a ser entre versões comprada e comprada/vendida
-com a mesma base de dados, exposições auditáveis, custos e regras. VT e 1/N
-continuam referências. Falhar uma margem contra o benchmark não converte
-automaticamente o benchmark em uma nova carteira do fundo.
+The main comparison is long-only versus long/short using the same data, auditable exposures, costs and rules. VT and 1/N remain benchmarks. Missing a benchmark margin does not automatically replace the fund's portfolio with its benchmark.
 
-## 2. Retornos esperados: não amarrar a resposta ao benchmark
+## 2. Expected returns
 
-O prior anterior beta × 4% tem pouca informação independente do mercado. Ele
-não é uma previsão de alpha. A literatura de Jorion (1986) sustenta reduzir o
-erro das médias estimadas, mas não prova o peso 50/50 de uma mistura escolhida.
+The earlier beta × 4% prior has little independent information and is not an alpha forecast. Jorion (1986) motivates reducing mean-estimation error, but does not prove a chosen 50/50 mixture.
 
-Há duas implementações honestas:
+Two honest options were considered:
 
-1. **Shrinkage empírico de médias.** O apêndice dos autores DeMiguel, Garlappi e
-   Uppal explicita uma versão Bayes–Stein: média do ativo é misturada à média
-   da carteira global de mínima variância, e a intensidade depende da dispersão
-   das médias, da covariância e do tamanho da amostra. O conteúdo apareceu
-   integralmente no índice de busca NBER, mas o PDF direto retornou 404; não
-   afirmar leitura completa desse arquivo.
-2. **Mistura fixa declarada.** Misturar média histórica e prior de mercado em
-   proporção fixada antes do teste; 50/50 seria política do estudo, com
-   sensibilidades 25/75 e 75/25, e não uma estimativa ótima comprovada.
+1. Empirical mean shrinkage. DeMiguel, Garlappi and Uppal's appendix describes Bayes–Stein shrinkage toward the global minimum-variance portfolio's mean. Intensity depends on mean dispersion, covariance and sample size. Its indexed content was available, but the direct NBER PDF returned 404; complete PDF access is not claimed.
+2. A disclosed fixed mixture of historical means and a market prior. A 50/50 policy would require 25/75 and 75/25 sensitivities and must not be presented as proven optimal.
 
-Se usar o estimador empírico com covariância Ledoit–Wolf em vez da matriz
-amostral corrigida de Jorion, chamar de shrinkage de médias inspirado em
-Bayes–Stein. Não alegar reprodução exata do artigo. Fazer tudo só com os 60
-retornos anteriores. Reestimar dentro de cada cenário sintético também.
+Using Ledoit–Wolf covariance instead of Jorion's corrected sample matrix is an adaptation inspired by Bayes–Stein, not exact replication. Fit on only the previous 60 returns and refit inside synthetic scenarios.
 
-Uma fórmula operacional inspirada no apêndice é:
+Operational formula:
 
 ```
-m = média mensal amostral; C = covariância mensal regularizada
+m = monthly sample mean; C = regularized monthly covariance
 q = C^-1 1 / (1' C^-1 1)
 m0 = q' m
 phi = (N+2) / ((N+2) + T (m-m0 1)' C^-1 (m-m0 1))
 m_shrunk = (1-phi) m + phi m0 1
 ```
 
-O peso q serve ao estimador; não é a carteira recomendada e pode conter
-posições negativas. O objetivo final aplica as restrições da carteira.
+`q` is an estimation device, not the recommended portfolio; it may be signed. Final optimization imposes the mandate's constraints.
 
-## 3. Limites vinculados a choques explícitos
+## 3. Caps tied to explicit shocks
 
-Os valores abaixo são propostas prudenciais, não resultados de otimização
-sobre a mesma janela que será usada para avaliar o desempenho.
+These are proposed risk budgets, not percentages optimized on the evaluation sample.
 
-| Limite sugerido | Razão operacional / orçamento de choque |
+| Proposed limit | Operational rationale / shock budget |
 |---|---|
-| Peso por ETF entre −5% e +20% | Limita uma venda isolada e a dependência de um veículo. A capacidade de aluguel real ainda precisa ser verificada. |
-| Exposição líquida 100% | Mantém o bloco C orientado a ações; não significa ausência de dívida ou de garantias. |
-| Exposição bruta até 140% | Com líquido 100%, implica compras até 120% e vendas até 20%. Não é meta de usar toda a alavancagem. |
-| Empresa/grupo até 5% bruto | Choque isolado de 50% equivale a até 2,5 pontos percentuais de NAV, antes de choques simultâneos e custos. |
-| Setor até 35% bruto | Choque setorial isolado de 40% equivale a até 14 pontos de NAV. Sensibilidades 30% e 40% mostram o custo desse orçamento. |
-| Maior país até 75% bruto; demais até 25% | Políticas para limitar dependência geográfica. Um choque isolado de 30% no maior país pode consumir 22,5 pontos de NAV. Ajustar se esse orçamento for incompatível com o mandato. |
-| CVaR 95% mensal até 15% | Limita a média dos piores 5% dos retornos mensais modelados. Não limita drawdown acumulado nem perda máxima fora dos cenários. |
+| ETF weight −5% to +20% | Limits individual shorts and reliance on one vehicle; actual borrow capacity remains unverified. |
+| Net exposure 100% | Keeps block C equity-oriented; it does not eliminate debt or collateral. |
+| Gross exposure up to 140% | With 100% net, longs can reach 120% and shorts 20%; using all leverage is not a target. |
+| Company/issuer 5% gross | An isolated 50% shock costs at most 2.5 NAV percentage points before joint shocks and costs. Wider corporate groups need separate mapping. |
+| Sector 35% gross | An isolated 40% sector shock costs up to 14 NAV points; 30% and 40% sensitivities test this budget. |
+| Largest country 75%, each other 25% gross | Limits geographic dependence. A 30% isolated largest-country shock could cost 22.5 NAV points; revise if incompatible with the mandate. |
+| Monthly CVaR95 up to 15% | Limits average modeled worst-5% monthly loss, not cumulative drawdown or unseen maximum loss. |
 
-Não somar restrições decorativas. O teto por família de ETF pode ser removido
-quando empresa/setor/país completos já controlarem a exposição econômica;
-mantê-lo apenas como controle operacional documentado. O mínimo obrigatório
-de 20% de fundos globais não é necessário à nova lógica: a composição real
-deve decidir se já há diversificação, sem impor um ticker ou wrapper.
+Avoid decorative constraints. A fund-family cap may be removed when full company/sector/country exposures already control economic concentration, unless an operational reason is documented. A compulsory 20% global-fund floor is not needed: actual holdings should establish diversification without prescribing a ticker or wrapper.
 
-**Moeda precisa de uma definição auditável.** Moeda de negociação do ETF não
-é a moeda das empresas. A moeda de negociação de cada ação subjacente é uma
-proxy, não uma medida de receitas, dívida ou hedge cambial econômico. Se
-existir apenas essa proxy, identificar como tal. Não chamar de limite de
-risco cambial econômico certificado. Um teto ilustrativo USD 85% bruto,
-restantes 35%, pode ser testado somente se os dados completos dessa proxy
-estiverem disponíveis e houver viabilidade; não é um resultado da literatura.
+Currency must have an auditable definition. An ETF's listing currency is not its companies' currency exposure. Underlying quotation currency is a proxy, not revenue/debt/hedging exposure. The design considered illustrative USD 85% and other-currency 35% caps only if coverage and feasibility supported them; the implemented policy applies the configured 85% per-currency cap. Neither number is established by the literature.
 
-## 4. Look-through e dados incompletos
+## 4. Look-through and missing data
 
-Para participações não negativas h[j,i] da empresa j no ETF i:
+For nonnegative constituent weights `h[j,i]`:
 
 ```
-exposição líquida da empresa j = sum_i w_i h[j,i]
-exposição bruta da empresa j   = sum_i abs(w_i) h[j,i]
+company j net exposure   = sum_i w_i h[j,i]
+company j gross exposure = sum_i abs(w_i) h[j,i]
 ```
 
-As restrições devem usar a exposição bruta e o diagnóstico deve mostrar as
-duas. Fazer o mesmo para setores e países. Assim uma compra e uma venda de
-fundos quase iguais não escondem posições grandes.
+Constraints use gross exposure, while diagnostics show gross and net. Apply the same principle to sectors and countries so near-identical long and short funds cannot hide large positions through netting.
 
-Unir classes do mesmo emissor (por exemplo GOOG/GOOGL) com identificador
-auditável. ADR e ação local podem ser a mesma empresa. Não afirmar que todo
-grupo econômico foi consolidado se apenas as classes de ações foram unidas.
-A metodologia GICS atribui classificação à empresa e a propaga aos títulos;
-é necessário harmonizar classificações diferentes dos provedores. Não
-chamar todos os rótulos setoriais de GICS se não houver mapeamento verificado.
+Combine share classes of one issuer, for example GOOG/GOOGL, using auditable identifiers; ADR and local listings may represent the same company. Do not claim complete corporate-group consolidation when only share classes were combined. GICS classifies at company level and propagates to securities; differing provider taxonomies require verified harmonization.
 
-Top 10 não é composição completa. Conservar uma parcela desconhecida, medir
-cobertura e excluir fundos sem suporte suficiente para o controle prometido.
-Não preencher desconhecido com zero nem normalizar artificialmente o Top 10
-a 100%. Uma possibilidade conservadora é limitar a parcela desconhecida
-agregada; para certificação forte de empresa, a parte desconhecida também
-precisa entrar no pior caso de concentração de cada emissor.
+A top-ten list is not complete holdings. Keep unknown exposure, measure coverage and exclude unsupported funds. Never fill unknowns with zero or renormalize top holdings to 100%. An aggregate unknown budget is conservative but strong worst-case company certification would also allocate unknown exposure to every possible issuer.
 
-**História:** uma composição de outubro de 2026 não estava disponível em
-2019. Se só houver composição atual, ela pode definir uma carteira atual e
-um teste retrospectivo com matriz congelada, mas esse teste não é uma
-validação point-in-time dos limites por empresa/setor. O relatório deve
-distinguir isso na própria tabela principal, não apenas numa nota distante.
+An October 2026 snapshot was unavailable in 2019. It can support a current portfolio and a frozen retrospective test, not point-in-time validation of historical concentration. This must appear beside main results, not only in a distant footnote.
 
-## 5. Contabilidade de posições negativas e financiamento
+## 5. Signed accounting and financing
 
-Defina L como a soma dos valores comprados e S como o valor absoluto das
-vendas, em proporção do NAV. A exposição líquida escolhida é L−S=1.
-Uma carteira 120/20 tem risco bruto de 140%, não de 100%.
+Let `L` be long value and `S` absolute short value as fractions of NAV. The chosen net mandate is `L-S=1`; 120/20 means 140% gross risk.
 
-**Modelo explícito conservador de caixa restrito:** os recursos da venda
-ficam em garantia e não são dinheiro gratuito para novas compras. Seja
-K=hS o colateral, h>=1. Incluindo os recursos da venda na contabilidade:
+Restricted-proceeds model: short proceeds are collateral, not free capital. For collateral `K=hS`, `h>=1`:
 
 ```
-dívida D = max(L - 1 - S + K, 0)
+D = max(L - 1 - S + K, 0)
 NAV = L + K - S - D
-se L-S=1, então D=K e NAV=1
-fluxo de financiamento = K*taxa_rebate - D*taxa_debito - S*taxa_aluguel
+if L-S=1, D=K and NAV=1
+annual financing flow = K*rebate - D*debit_rate - S*borrow_rate
 ```
 
-Para h=1 e rebate=0, hipótese conservadora de estudo, custo anual sobre a
-venda é S*(taxa_caixa + spread_debito + taxa_aluguel). Isso não é uma
-reprodução da conta de uma corretora específica. IBKR documenta que aluguel
-e remuneração dos recursos da venda são componentes distintos, variáveis
-com o papel e o tamanho da conta; alguns clientes não recebem o rebate cheio.
+With `h=1` and zero rebate, annual short cost is `S*(cash_rate + debit_spread + borrow_rate)`. This is a conservative study assumption, not a particular broker account. IBKR distinguishes borrow fees and proceeds interest, varying by security and account size.
 
-Sugestão inicial claramente assumida: spread de débito 1,5% a.a. e aluguel
-2% a.a.; sensibilidades de aluguel 1%, 3% e 5%, sem escolher o caso vencedor.
-Taxas históricas de aluguel e disponibilidade não foram observadas: sua
-ausência limita qualquer alegação de executabilidade. Permitir vendas
-somente de ETFs líquidos explicitamente marcados como candidatos a aluguel;
-essa marca não equivale a um locate real.
+The design-stage example proposed a 1.5% debit spread and 2% borrow fee, with 1%, 3% and 5% borrow sensitivities. The implemented base uses a 1-point debit spread and 2% borrow fee, with the documented 5% sensitivity; configuration governs actual results. Historical borrow rates and availability were not observed. A candidate borrow flag is not a verified locate.
 
-**Distribuições:** se o retorno usado é o total ajustado, w negativo já
-incorpora a obrigação econômica de distribuições. Não descontar dividendos
-novamente. TER também já está no preço observado. Aluguel, financiamento,
-gestão extra e transação continuam separados.
+Adjusted total returns already incorporate distributions, including shorts' opposite economic effect; do not charge dividends twice. Internal fund expenses already reflected in prices must not be deducted again. Borrowing, financing, additional management and trading remain separate.
 
-**Margem:** Regulação T/FINRA e house margins variam por produto e conta. Um
-teste acadêmico pode usar requisito inicial simplificado 50% L + 50% S e
-manutenção 25% L + 30% S, mas precisa rotular isso como proxy de títulos
-ordinários, não compliance universal. Verificar que NAV satisfaz os requisitos;
-após movimentos adversos, reduzir exposição ou registrar chamada/encerramento
-forçado. Não recorrer aos blocos A/B. Testar recall/cobertura compulsória como
-sensibilidade se não houver história de disponibilidade de aluguel.
+Regulation T, FINRA and house margins vary. An academic initial proxy `0.50L+0.50S` and maintenance `0.25L+0.30S` are not universal compliance. Monitor NAV against requirements; reduce exposure or record margin/liquidation events after adverse movements. Do not use blocks A/B. Borrow recall is a further sensitivity if historical availability is absent.
 
-## 6. Otimização e execução
+## 6. Optimization and execution
 
-O objetivo Sharpe líquido tem retornos esperados, custos e risco na mesma
-unidade temporal. Na formulação por p e n não negativos, w=p−n; o total
-vendido é sum(n) e o bruto é sum(p+n). Custos tornam inúteis posições
-comprada e vendida simultâneas no mesmo ETF; verificar que o resultado não
-contém essa redundância.
+Expected returns, costs and risk must use consistent time units. With nonnegative `p,n`, `w=p-n`, shorts are `sum(n)` and gross is `sum(p+n)`. Costs discourage simultaneous long/short positions in the same ETF; verify no such redundant exposure remains.
 
-Para um alvo positivo de Sharpe, a desigualdade numerador >= alvo*sigma é
-convexa quando o numerador é linear menos custos convexos; dá para resolver
-por bisseção e programação cônica. Se usar SLSQP com valor absoluto e CVaR
-amostral, verificar solução e tolerância e não prometer ótimo global.
+For a positive Sharpe target, `numerator >= target*sigma` is convex when the numerator is linear less convex costs. Conic optimization or bisection is suitable. If SLSQP with absolute values and empirical CVaR is used instead, check feasibility and do not promise a global optimum.
 
-CVaR por cenários mensais pode ser implementado com variável z e excessos u:
+Scenario CVaR uses threshold `z` and excess losses `u`:
 
 ```
-u_s >= perda_s(w)-z; u_s >= 0
-z + sum_s u_s / ((1-alpha)*M) <= limite_CVaR
+u_s >= loss_s(w)-z; u_s >= 0
+z + sum_s u_s / ((1-alpha)*M) <= CVaR_limit
 ```
 
-Isso é a média da cauda modelada. Com 60 observações e alpha=95%, a cauda é
-muito pequena; declarar essa fragilidade. Bootstrap conjunto pode ampliar
-os cenários mas não cria novos regimes. Choque universal de −50% nas ações
-não pode ser conciliado com uma promessa de perda máxima 15% e exposição
-líquida acionária próxima de um sem um hedge/ativo diferente. Tratar esse
-choque separado de um CVaR mensal, sem relaxar a matemática silenciosamente.
+At 60 observations and 95% confidence, the modeled tail has very few observations. Joint bootstrap adds scenarios, not new regimes. A universal −50% equity shock cannot coexist with a promised 15% maximum loss and net equity exposure near one without another hedge/asset. Keep such stress separate rather than silently relaxing mathematics.
 
-Mensalmente, usar só dados até o sinal e executar depois; garantir que
-as posições anteriores recebem o retorno até o fechamento da execução.
-Vender para reduzir posição comprada e vender a descoberto são operações
-distintas, mas ambas pagam custo de transação. Custos devem reduzir o NAV
-em contabilidade autofinanciada. Peso negativo que cresce por movimento do
-preço exige controle de margem e exposição também entre rebalanceamentos.
+Use only information through the signal and execute later. Existing positions receive returns through execution. Reducing longs and opening shorts are different operations but both incur trading cost. Fees reduce NAV through self-financing accounting. Adverse price moves can enlarge shorts and require margin control between rebalances.
 
-## 7. Comparação e relatório curto
+## 7. Reporting and primary references
 
-Não adicionar uma exigência mínima de short e não concluir que usar todos os
-61 fundos é melhor. Os 61 são candidatos e cada exclusão fica documentada.
-Comparar mesma regra de retorno/covariância/caps com e sem posições negativas.
-Manter pesos iguais e um ETF global como referências, sem convertê-los
-automaticamente na carteira escolhida.
+No minimum short position and no requirement to hold all 61 funds. Audit every exclusion. Compare identical estimation/risk rules with and without shorts. Keep equal weight and a global ETF as benchmarks without automatically selecting them as the recommendation.
 
-O HTML pt-BR pode concentrar-se em cinco perguntas: por que o fundo existe;
-qual pesquisa fundamenta as decisões; como calcula pesos; o que testes e
-custos mostraram; qual carteira de estudo resulta e o que falta validar.
-Mostrar carteira, exposição por empresa/setor e restrições ativas antes de
-longas descrições de implementação. Reservar fontes, 61 candidatos e contas
-detalhadas para anexos recolhidos. Não alegar que 100% VT seja a nova
-estratégia aprovada pelo usuário.
+The report addresses why the fund exists, supporting research, weight calculation, net test results and remaining validation. Show allocation, underlying concentration and active constraints before implementation detail; keep sources and the 61-candidate catalogue in collapsed appendices.
 
-## Fontes primárias abertas nesta rodada
-
-- Jorion (1986), resumo no editor Cambridge: erro de estimação de médias e
-  justificativa de shrinkage de médias; texto integral não lido.
-- DeMiguel/Garlappi/Uppal, apêndice NBER indexado: fórmula operacional de
-  Bayes–Stein. Abertura direta 404, acesso limitado explicitado.
-- Rockafellar/Uryasev, página de publicações do autor e resumo original no
-  editor (2002): CVaR em distribuições por cenários e distinção de drawdown.
-- MSCI GICS, PDF atual servido como abril de 2026 embora o URL contenha
-  20250220: classificação no nível da empresa e propagação aos títulos.
-- FINRA Rule 4210: definição de patrimônio e manutenção de margem.
-- IBKR Short Sale Cost, página de financiamento e requisitos: distinção de
-  aluguel/rebate, variabilidade de taxas e dependência do tipo de conta.
+Primary evidence accessed: Jorion's Cambridge abstract (not full text); indexed DeMiguel/Garlappi/Uppal appendix (direct PDF 404); Rockafellar/Uryasev original publication records and abstracts; MSCI GICS official PDF served as April 2026 despite its older URL; FINRA Rule 4210; and official IBKR cost, financing and margin documentation. Full bibliographic records and access qualifications are in `references-v2.json`.

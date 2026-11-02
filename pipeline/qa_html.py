@@ -1,4 +1,4 @@
-"""Confere o HTML local no desktop e no celular, sem servidor ou publicação."""
+"""Check the local HTML on desktop and mobile without a server or publication."""
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import argparse
@@ -26,7 +26,7 @@ def run(root):
             page.goto(report.as_uri(), wait_until="load")
             assert page.locator("html").get_attribute("lang") == "en"
             ids = page.locator("[id]").evaluate_all("els => els.map(e => e.id)")
-            assert len(ids) == len(set(ids)), "Há IDs duplicados no HTML/SVG"
+            assert len(ids) == len(set(ids)), "Duplicate HTML/SVG IDs"
             figures = page.locator("figure svg").evaluate_all(
                 "els => els.map(e => ({width:e.getBoundingClientRect().width,height:e.getBoundingClientRect().height}))"
             )
@@ -43,11 +43,11 @@ def run(root):
                     continue
                 if parsed.path:
                     target = (report.parent / unquote(parsed.path)).resolve()
-                    assert target.exists(), f"Link local ausente: {href}"
+                    assert target.exists(), f"Missing local link: {href}"
                     local_count += 1
                 elif parsed.fragment:
-                    assert unquote(parsed.fragment) in ids, f"Âncora ausente: {href}"
-            page.screenshot(path=str(out / f"{label}-inicio.png"))
+                    assert unquote(parsed.fragment) in ids, f"Missing anchor: {href}"
+            page.screenshot(path=str(out / f"{label}-overview.png"))
             for section in ["results", "conclusions"]:
                 page.locator("#" + section).scroll_into_view_if_needed()
                 page.screenshot(path=str(out / f"{label}-{section}.png"))
@@ -55,7 +55,7 @@ def run(root):
             catalog.locator("summary").click()
             count = catalog.locator("table tbody tr").count()
             assert count == 61, count
-            assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), (label, "catálogo")
+            assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), (label, "catalogue")
             assert not errors, errors
             records.append(dict(viewport=label, width=width, figures=len(figures), typeset_equations=4, candidate_rows=count,
                                 local_links=local_count, duplicate_ids=False, horizontal_overflow=False,

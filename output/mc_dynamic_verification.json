@@ -4,14 +4,14 @@
   "optimizer_fits": 6000,
   "max_target_constraint_violation": 4.661061869803973e-09,
   "checks": [
-    "60 retornos sintéticos anteriores a cada decisão",
-    "Mesmo vetor amostrado para ETFs, caixa e câmbio",
-    "Duas otimizações por mês: comprada/vendida e somente comprada",
-    "Contabilidade Account separa caixa, garantia e dívida",
-    "Custos de aluguel/financiamento cobrados sem duplicar distribuições",
-    "Matriz atual congelada explicitamente identificada como retrospectiva",
-    "Trajetórias insolventes não são removidas nem reiniciadas",
-    "Fontes do modelo e da conta não mudaram durante a execução",
-    "Seed e treinamento antes do período de manutenção conferidos"
+    "60 synthetic returns precede each decision",
+    "The same vector is sampled for ETFs, cash and FX",
+    "Two optimizations per month: long/short and long only",
+    "Account separates cash, collateral and debt",
+    "Borrowing/financing costs charged without duplicating distributions",
+    "Current frozen matrix explicitly identified as retrospective",
+    "Insolvent paths are neither removed nor restarted",
+    "Model and accounting sources did not change during execution",
+    "Seed and training before the holding period verified"
   ]
 }

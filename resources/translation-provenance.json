@@ -1,0 +1,259 @@
+{
+  "scope": "English translation of authored documentation, runtime descriptions and strategy identifiers; no new simulation run is claimed. Original issuer/regulator data, field names and proper names remain unchanged.",
+  "original_commit": "f69c24e48dd0f071f64a49f9c3ac6a0900c8d1a8",
+  "scientific_sources": {
+    "model_v2.py": {
+      "original_sha256": "78d204cc4ef508d44431d9f85223e768a58ebab84adb9cb3669a385f6b10ac4d",
+      "translated_sha256": "78d204cc4ef508d44431d9f85223e768a58ebab84adb9cb3669a385f6b10ac4d",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "e1682b382d9c43e37310e7974b62122f35cb1f8c5f46e422ef23b8aa16a9fd0c"
+    },
+    "execution_v2.py": {
+      "original_sha256": "aec53b93ddeb59cd7d293163c24753796226aa0c6f03f8dd5784d860071a1c69",
+      "translated_sha256": "aec53b93ddeb59cd7d293163c24753796226aa0c6f03f8dd5784d860071a1c69",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "17a5c04652a43788e4f2f25198e098a8b1d8f14378c0383b58472216ee5ea257"
+    },
+    "config_v2.py": {
+      "original_sha256": "38e78a95eb1bfaca91d0f6a6641fee33b884c36d3010fbe7f6b446408d0fdc2e",
+      "translated_sha256": "38e78a95eb1bfaca91d0f6a6641fee33b884c36d3010fbe7f6b446408d0fdc2e",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "bfbdacef31a927c2b57819541947df28b071e5a346fb16a5e03c860362a3731a"
+    },
+    "study_v2.py": {
+      "original_sha256": "53c499341fdd16abb3e0f95d9cfdfd05da529c5f2cf1d00ba26c734df806e7f6",
+      "translated_sha256": "7d9c142f503d2b0ee81e7edbb66b5db39c4f043cc2938b7d0d1258cab624a2e8",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "1ba29ad73534aed15821f13b11b31893a151f60cdada2133402f94d011fb6ca3"
+    },
+    "data.py": {
+      "original_sha256": "a8044486be3e7778e2f3efe897ed5bfbcbc81fb0d1695bc86d37019cde1c4c3e",
+      "translated_sha256": "40588ea7e11e8895e98045785f55655af64891a7fcf12dcf64de647f80b16632",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "e15348e3093ece290319444bf8fc30250d95e6754902371b6d5e98976b5efbed"
+    },
+    "eligibility.py": {
+      "original_sha256": "1d2e4b2f308ca368a9c84fa01ab54dc7caa0273faa3e58591b7334dbe4f78ad6",
+      "translated_sha256": "55633a44e656e4638774b5266215d3ec7860d1e37d7ea01c76d75965a3b8e698",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "c3b060afb4eff1168919309240357e7002f69db56fa10db678fa3979157c7acc"
+    },
+    "utilities.py": {
+      "original_sha256": "72f42fc937197d0ce7e3829c2a29d47d627431ae6c6c0c62928c96abee9da034",
+      "translated_sha256": "0d0e794fd812674c47f0992648dafd99ee6f6df2b64b95e6d7e22cba071a74f0",
+      "nontext_ast_unchanged": true,
+      "nontext_ast_sha256": "8cfc68d07492dd328fb82a125dddf72737b8081d858bf0e151e52ae6ad8feb95"
+    }
+  },
+  "csv_numeric_values_checked": 535507,
+  "numeric_csvs": [
+    {
+      "file": "output/accounting.csv",
+      "original_sha256": "ab315938ace871e998802379afcdb74efe7c73c3e49f8c2f8ace750c3d06cadc",
+      "translated_sha256": "9014aff7a43027bd6b0bb50e58b3296fff3659a711ea573906db0da68b832909",
+      "rows": 12762,
+      "numeric_cells_unchanged": 280742
+    },
+    {
+      "file": "output/allocation.csv",
+      "original_sha256": "547b3b78752f2a4dfb552e627b8c254240bb767d4c90d7a77ff2f5d9d9dd8885",
+      "translated_sha256": "547b3b78752f2a4dfb552e627b8c254240bb767d4c90d7a77ff2f5d9d9dd8885",
+      "rows": 62,
+      "numeric_cells_unchanged": 160
+    },
+    {
+      "file": "output/daily_returns.csv",
+      "original_sha256": "45f14264c31e7d82ecac7d8352422bdec43cc451cd864c2ebddc2f6a8eb4e73e",
+      "translated_sha256": "a53ea74b4d8471f7d90dde2bdff5168411642279f1e6a515e04f3e3efc6c9147",
+      "rows": 1824,
+      "numeric_cells_unchanged": 16407
+    },
+    {
+      "file": "output/limits.csv",
+      "original_sha256": "c2a6b3a9b8a1606308351b47176b72c6ab6618f8e7f6d1f540ce371cefcd50b7",
+      "translated_sha256": "c2a6b3a9b8a1606308351b47176b72c6ab6618f8e7f6d1f540ce371cefcd50b7",
+      "rows": 15092,
+      "numeric_cells_unchanged": 30182
+    },
+    {
+      "file": "output/lookthrough.csv",
+      "original_sha256": "7f299c173a9690cbba5426cca035a9b6378d40ad64920b505eef1675d7b7c257",
+      "translated_sha256": "7e12c6c28c8450bc433c83e08de497057f140007f791afeccb9e593a2f59ea08",
+      "rows": 2764,
+      "numeric_cells_unchanged": 5521
+    },
+    {
+      "file": "output/mc_dynamic_paths.csv",
+      "original_sha256": "d90baeda99a25558cce31eeecfeb69fd7fe6dd171c444977275207c69eb7877a",
+      "translated_sha256": "6974c6d739e5a30b2554aee766837ec06fdbc8b0c38ba1eba6708cff7e101b80",
+      "rows": 201,
+      "numeric_cells_unchanged": 2600
+    },
+    {
+      "file": "output/mc_dynamic_reservoir.csv",
+      "original_sha256": "3a1d4bf2e05cb0449d70210112741f65f77b5a5178fd6f5c5c273e23a9542e40",
+      "translated_sha256": "3a1d4bf2e05cb0449d70210112741f65f77b5a5178fd6f5c5c273e23a9542e40",
+      "rows": 148,
+      "numeric_cells_unchanged": 3969
+    },
+    {
+      "file": "output/mc_dynamic_trace.csv",
+      "original_sha256": "03bd7ca77ea132ec0d8ded3ca881669c33d19dcf973e46ff179f72c00300b236",
+      "translated_sha256": "0ffae31be48e04b2de55d66f00b1ff1195fc0c0ac9a28f378f1e2484f8e56f21",
+      "rows": 2401,
+      "numeric_cells_unchanged": 36000
+    },
+    {
+      "file": "output/mc_intervals.csv",
+      "original_sha256": "a8c32db23778b7e87726c603435f09ab9fb5ff31a440fbbb4fb0977e5cad6cd8",
+      "translated_sha256": "bd97c39d13a72efbf26cb2c15704ee8ab4691814645e1c5cff77c6349ea49d78",
+      "rows": 22,
+      "numeric_cells_unchanged": 168
+    },
+    {
+      "file": "output/mc_monthly_returns.csv",
+      "original_sha256": "3a8dddd4bddb807516c239aedb12975fc4256ba484c34c9ecb96dc34a6eebd83",
+      "translated_sha256": "6ec571d5e7cfe5fe41b7cc984fcc09744f198332f7a936176ded2763b097ad50",
+      "rows": 88,
+      "numeric_cells_unchanged": 522
+    },
+    {
+      "file": "output/mc_percentiles.csv",
+      "original_sha256": "e60023b293d1a8802aa81056bd10ea2e08ba37c5facd770bd1c4fd9f30bf37d7",
+      "translated_sha256": "d875a0313213b54207c17a5e2f99adb1452dc939c66d101570a2bfcf9b71dfc2",
+      "rows": 209,
+      "numeric_cells_unchanged": 1248
+    },
+    {
+      "file": "output/mc_terminal_samples.csv",
+      "original_sha256": "548f2e8d8d2cd0b64910825113e600d9cb83bb32e10ee12a4924e5517c713da8",
+      "translated_sha256": "b9bb959d1fb3b616f69ab22d570129ac86f18995704e13a128e22b8d66508184",
+      "rows": 4001,
+      "numeric_cells_unchanged": 16000
+    },
+    {
+      "file": "output/metrics.csv",
+      "original_sha256": "1bf1f239f06142227c59a7d1464dfd304c870eb61548cc30c42df1422ab202c0",
+      "translated_sha256": "d70e958ffca7de4e117c2298f0387404d8de8a82f691355edd54ebc94bb1c71d",
+      "rows": 8,
+      "numeric_cells_unchanged": 140
+    },
+    {
+      "file": "output/metrics_brl.csv",
+      "original_sha256": "c48e3a8c74edfe85e09910e297d4b7b7adb168991c9bfdbbb376319a808fa39c",
+      "translated_sha256": "14333ae23768746ace513b99924b5f06806697929f197ec8a9c20ff5d6a12f45",
+      "rows": 5,
+      "numeric_cells_unchanged": 32
+    },
+    {
+      "file": "output/temporal_control_accounting.csv",
+      "original_sha256": "031e677d8926ae1819dc566beb28ef6a5ff1bc8c9a076d0a987d387144d82c42",
+      "translated_sha256": "031e677d8926ae1819dc566beb28ef6a5ff1bc8c9a076d0a987d387144d82c42",
+      "rows": 1824,
+      "numeric_cells_unchanged": 40106
+    },
+    {
+      "file": "output/temporal_control_trades.csv",
+      "original_sha256": "009e15de58537afcbab01b2cc3588e2e6cd682c6c99b2d968371d36281fc3dcc",
+      "translated_sha256": "009e15de58537afcbab01b2cc3588e2e6cd682c6c99b2d968371d36281fc3dcc",
+      "rows": 88,
+      "numeric_cells_unchanged": 2436
+    },
+    {
+      "file": "output/temporal_control_weights.csv",
+      "original_sha256": "7cd681692c39f095a472bba32565205f346b197b5b27255d57f544aa32e34253",
+      "translated_sha256": "7cd681692c39f095a472bba32565205f346b197b5b27255d57f544aa32e34253",
+      "rows": 5308,
+      "numeric_cells_unchanged": 10614
+    },
+    {
+      "file": "output/trades.csv",
+      "original_sha256": "ca836106e69e571b17d097a6fe8499db686d8580e62eff1c425b6a2e1eac5655",
+      "translated_sha256": "4df2124677f8cef7553d04b304ef88794d04e86473166b1fba05ab1b439ba595",
+      "rows": 610,
+      "numeric_cells_unchanged": 14362
+    },
+    {
+      "file": "output/weights.csv",
+      "original_sha256": "86c6f055c5f804e6cb8ac2c7fa232818a631e4dfbeb53df4180e6a056db47d3f",
+      "translated_sha256": "e940dfe17401244ca3650759d040923b0a1e16da1c9bcf84e31418daed2c9a3a",
+      "rows": 37150,
+      "numeric_cells_unchanged": 74298
+    }
+  ],
+  "raw_input_files_unchanged": [
+    "data/coverage.csv",
+    "data/daily_liquidity.csv",
+    "data/daily_log_returns_usd.csv",
+    "data/daily_prices.csv",
+    "data/dynamic_rf_source.csv",
+    "data/fee_profiles.csv",
+    "data/fx.csv",
+    "data/liquidity_monthly.csv",
+    "data/liquidity_sources.json",
+    "data/monthly_log_returns_usd.csv",
+    "data/risk_free.csv",
+    "data/sources.json",
+    "data/universe.csv",
+    "data/holdings/AUVP11-cvm-202609.csv",
+    "data/holdings/BBOV11-cvm-202609.csv",
+    "data/holdings/BBSD11-cvm-202609.csv",
+    "data/holdings/BEST11-cvm-202609.csv",
+    "data/holdings/BOVA11-latest.csv",
+    "data/holdings/BOVV11-cvm-202609.csv",
+    "data/holdings/BRAX11-cvm-202609.csv",
+    "data/holdings/CNDX-latest.csv",
+    "data/holdings/coverage.csv",
+    "data/holdings/CSPX-latest.csv",
+    "data/holdings/cvm-cda-202609.zip",
+    "data/holdings/cvm-fie-etfs.csv",
+    "data/holdings/cvm-PL-202609.csv",
+    "data/holdings/DGRO-latest.csv",
+    "data/holdings/DIVO11-cvm-202609.csv",
+    "data/holdings/DVY-latest.csv",
+    "data/holdings/EIMI-latest.csv",
+    "data/holdings/extra-manifest.json",
+    "data/holdings/extra-rows.csv",
+    "data/holdings/FIND11-cvm-202609.csv",
+    "data/holdings/GOVE11-cvm-202609.csv",
+    "data/holdings/holdings.csv",
+    "data/holdings/IEMG-latest.csv",
+    "data/holdings/industry_sector_crosswalk.csv",
+    "data/holdings/ISAC-latest.csv",
+    "data/holdings/ITOT-latest.csv",
+    "data/holdings/IVV-latest.csv",
+    "data/holdings/IVV.csv",
+    "data/holdings/IVVB11-cvm-202609.csv",
+    "data/holdings/IWDA-latest.csv",
+    "data/holdings/IWMO-latest.csv",
+    "data/holdings/IWQU-latest.csv",
+    "data/holdings/manifest.json",
+    "data/holdings/MTUM-latest.csv",
+    "data/holdings/NASD11-cvm-202609.csv",
+    "data/holdings/PIBB11-cvm-202609.csv",
+    "data/holdings/QUAL-latest.csv",
+    "data/holdings/SMAL11-cvm-202609.csv",
+    "data/holdings/SPY-converted.csv",
+    "data/holdings/SPY.xlsx",
+    "data/holdings/ucits-manifest.json",
+    "data/holdings/USMV-latest.csv",
+    "data/holdings/vanguard-manifest.json",
+    "data/holdings/VB-latest.json",
+    "data/holdings/VBR-latest.json",
+    "data/holdings/VEA-latest.json",
+    "data/holdings/VIG-latest.json",
+    "data/holdings/VOO-latest.json",
+    "data/holdings/VOOG-latest.json",
+    "data/holdings/VT-latest.json",
+    "data/holdings/VTI-latest.json",
+    "data/holdings/VTV-latest.json",
+    "data/holdings/VUG-latest.json",
+    "data/holdings/VWO-latest.json",
+    "data/holdings/VWRA11-cvm-202609.csv",
+    "data/holdings/VXUS-latest.json",
+    "data/holdings/VYM-latest.json",
+    "data/holdings/WRLD11-cvm-202609.csv",
+    "data/holdings/WSML-latest.csv"
+  ],
+  "verification_method": "Original Git blobs are compared with current sources/results. Scientific ASTs are compared after replacing string constants; every numeric CSV cell is compared as its exact original text. Historical simulation fingerprints remain unchanged."
+}

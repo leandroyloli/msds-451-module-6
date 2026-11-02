@@ -1,78 +1,56 @@
-# MSDS 451 — Checkpoint B
+# MSDS 451 â€” Checkpoint B
 
-Estudo do bloco de crescimento: escolher ETFs e pesos, permitindo posições
-negativas, com limites pelas empresas e setores dentro dos fundos.
+Choose ETFs and weights for the growth block, allowing short positions and controlling the companies and sectors held inside the funds.
 
-**[Open the English report](report/checkpoint-b.html)** · [Versão aprovada em português](report/checkpoint-b-pt-br.html)
+**[Read the English report](report/checkpoint-b.html)**
 
-## Reproduzir
+## Reproduce
 
-Os dados necessários estão nesta pasta. Nenhum comando normal consulta pastas
-irmãs ou atualiza fontes na internet.
+All required inputs are saved here. Normal commands neither consult sibling folders nor refresh internet sources.
 
 ```powershell
 cd C:/studing/msds-451-module-6
 uv run --no-project --with-requirements requirements.txt python run.py --check
+python -m pipeline.verify_translation
 uv run --no-project --with-requirements requirements.txt python run.py --report-only
 uv run --no-project --with-requirements requirements.txt python run.py
 ```
 
-O primeiro comando verifica os resultados salvos. O segundo reconstrói figuras e
-HTML. O último refaz o estudo inteiro: sete casos históricos, controle temporal,
-10 mil cenários pareados de 25 anos e 50 trajetórias dinâmicas de cinco anos, com
-6 mil otimizações. A execução completa leva vários minutos. `uv` instala as
-dependências isoladamente; não altera o ambiente científico compartilhado.
+`--check` verifies saved data, accounting and results. `--report-only` rebuilds figures and HTML. The default command reruns seven historical cases, the temporal control, 10,000 paired 25-year scenarios and 50 reoptimized five-year paths (6,000 optimizations). A full run takes several minutes. `uv` provides isolated dependencies without changing the shared scientific environment.
 
-## Estrutura
+## Structure
 
-| Pasta | Conteúdo |
+| Path | Contents |
 |---|---|
-| `pipeline/` | Leitura dos dados, filtros, otimização, conta long/short, testes e relatório |
-| `data/` | Preços, câmbio, liquidez, juros e metadados congelados |
-| `data/holdings/` | Composição normalizada, cobertura, manifestos e arquivos originais dos emissores/CVM |
-| `output/` | Pesos, operações, patrimônio, métricas, cenários e verificações |
-| `figures/` | Gráficos em SVG e PNG |
-| `report/` | HTML autocontido em inglês; versão aprovada em português preservada |
-| `resources/` | Enunciado, bibliografia, decisões, auditorias e proveniência |
+| `pipeline/` | Input readers, filters, optimization, signed accounting, validation and report generation |
+| `data/` | Frozen prices, FX, liquidity, cash yields and metadata |
+| `data/holdings/` | Normalized holdings, coverage, manifests and original issuer/regulator files |
+| `output/` | Weights, trades, wealth, metrics, simulations and verification records |
+| `figures/` | English SVG and PNG charts |
+| `report/` | Self-contained English HTML |
+| `resources/` | Assignment, bibliography, design decisions, audits and provenance |
 
-## O que os dados permitem afirmar
+## What the evidence supports
 
-- Preços até 23/10/2026; meses completos até setembro de 2026.
-- Experimento histórico entre julho de 2019 e setembro de 2026: inclui COVID e
-  2022, mas não as crises de 2001 e 2008.
-- Composições de setembro/outubro de 2026 congeladas no retrospectivo. Elas não
-  certificam os limites históricos por empresa, setor, país ou moeda.
-- Classes de ações são agregadas por emissor; isso não identifica todos os
-  conglomerados ou grupos controladores.
-- Moeda de negociação das ações subjacentes é uma aproximação; não mede toda a
-  exposição cambial econômica das empresas.
-- Aluguel, financiamento e margem são hipóteses explícitas. A disponibilidade
-  histórica de empréstimo e as condições de uma conta real não estão comprovadas.
+- Prices end October 23, 2026; complete months end September 2026.
+- The July 2019â€“September 2026 experiment includes COVID and 2022, not the 2001 or 2008 crises.
+- September/October 2026 holdings are frozen retrospectively. They do not certify historical company, sector, country or currency limits.
+- Share classes are grouped by issuer; wider corporate-control groups are not fully mapped.
+- Underlying quotation currency is a proxy, not complete economic FX exposure.
+- Borrowing, financing and margin are explicit assumptions. Historical availability and real-account terms are unverified.
 
-## Proveniência e reprodução independente
+## Provenance
 
-Esta é a pasta oficial do Module 6. O estudo anterior ficou preservado em
-`C:/studing/msds-451-module-6-temp`. Helpers mínimos substituem o framework antigo. Os testes foram
-executados novamente nesta pasta: não foram reescritos fingerprints antigos para
-representar uma execução que não ocorreu. A origem dos inputs continua registrada
-nos seus manifestos; caminhos de origem são documentação, não dependências.
+The original study remains outside this repository in `C:/studing/msds-451-module-6-temp`. Minimal helpers replaced its earlier framework, and the complete study was rerun in this folder. Historical result fingerprints were not rewritten to imply a run that did not occur.
 
-O [manifesto de empacotamento](resources/packaging-provenance.json) identifica os
-arquivos copiados. Os manifestos em `output/` identificam o código e os resultados
-da nova execução. O [enunciado local](resources/assignment.md) conserva o link do
-Canvas e a rubrica de cinco seções, dez pontos cada.
+[Packaging provenance](resources/packaging-provenance.json) records copied inputs. [Translation provenance](resources/translation-provenance.json) records the later English-only changes and validates unchanged numerical logic and results. [Assignment instructions](resources/assignment.md) retain the Canvas source and five sections worth ten points each. [Folder relocation](resources/folder-relocation.json) records earlier locations; absolute paths in historical records describe locations at the time, not current dependencies.
 
-O [registro da troca de nomes](resources/folder-relocation.json) conserva os
-caminhos anteriores. Caminhos absolutos nos registros históricos indicam a
-localização na época da coleta; os comandos atuais usam esta pasta oficial.
-As prévias de revisão também ficaram na pasta temporária, em `packaging-previews/`.
+The approved Portuguese report and old review screenshots are preserved outside the repository in the temporary study archive. Upstream CVM field names, legal names and Portuguese source vocabulary remain unchanged because they are original financial records, not authored documentation.
 
-A verificação visual pode ser repetida no Windows, com Edge instalado:
+Visual verification on Windows with Edge:
 
 ```powershell
 uv run --no-project --with playwright python pipeline/qa_html.py --root C:/studing/msds-451-module-6
 ```
 
-Repositório: [leandroyloli/msds-451-module-6](https://github.com/leandroyloli/msds-451-module-6).
-A solução completa é apresentada em um pull request para revisão. Não houve
-merge, implantação de site ou submissão ao Canvas.
+Repository: [leandroyloli/msds-451-module-6](https://github.com/leandroyloli/msds-451-module-6). The study was introduced through PR #1; this translation is a separate review change. No site deployment or Canvas submission is part of the repository workflow.

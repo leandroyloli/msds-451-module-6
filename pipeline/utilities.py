@@ -1,4 +1,4 @@
-"""Funções numéricas preservadas do estudo original, sem runner v1."""
+"""Numerical utilities preserved from the original study without its runner."""
 import numpy as np
 import pandas as pd
 SEED=45106

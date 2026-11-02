@@ -1,5 +1,5 @@
 {
-  "method": "Walk-forward mensal em vetores sintéticos com reotimização long/short e comprada",
+  "method": "Monthly walk-forward on synthetic vectors with long/short and long-only reoptimization",
   "paths": 50,
   "test_months": 60,
   "test_years": 5.0,
@@ -41,16 +41,16 @@
   "optimizer_fits": 6000,
   "expected_fits_without_insolvency": 6000,
   "solver_failures": 0,
-  "solver_failure_policy": "A execução para se o solver falhar; nenhuma trajetória é descartada",
+  "solver_failure_policy": "Execution stops on solver failure; no path is discarded",
   "max_target_constraint_violation": 4.661061869803973e-09,
   "margin_calls": 0,
   "minimum_risk_safeguard_fits": 244,
-  "exposure_information": "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
+  "exposure_information": "Current ETF holdings are frozen: scenarios are retrospective and do not causally validate historical company/sector/country/currency limits.",
   "holdings_matrix_frozen": true,
   "holdings_sha256": "31793c33e773eb75c1c11bd487c68705c2fd3d2a0a6fd5c98335804fcc5c1532",
   "historical_exposures_point_in_time": false,
   "monthly_bands": true,
-  "execution": "Sinal após 60 retornos anteriores; execução antes do retorno sintético seguinte; aproximação mensal",
+  "execution": "Signal follows 60 prior returns; execution precedes the next synthetic return; monthly approximation",
   "costs": {
     "transaction": 0.001,
     "management": 0.0025,
@@ -135,7 +135,7 @@
       }
     },
     {
-      "strategy": "Somente comprado",
+      "strategy": "Long only",
       "paths": 50,
       "insolvent_paths": 0,
       "margin_calls": 0,
@@ -208,7 +208,7 @@
       }
     },
     {
-      "strategy": "Pesos iguais",
+      "strategy": "Equal weight",
       "paths": 50,
       "insolvent_paths": 0,
       "margin_calls": 0,
@@ -356,7 +356,7 @@
   ],
   "comparisons": [
     {
-      "reference": "Somente comprado",
+      "reference": "Long only",
       "delta_sharpe": {
         "p05": -0.04887055187440961,
         "p50": -0.0007785661329627325,
@@ -369,7 +369,7 @@
       "probability_sharpe_gain_point_one": 0.02
     },
     {
-      "reference": "Pesos iguais",
+      "reference": "Equal weight",
       "delta_sharpe": {
         "p05": -0.0862994981703618,
         "p50": 0.06780925883129228,
@@ -407,12 +407,12 @@
   },
   "elapsed_seconds": 300.5929999999935,
   "limitations": [
-    "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
-    "Universo fixo de ETFs antigos, não a entrada futura de todos os 61 candidatos",
-    "Aproximação mensal não mede perdas e chamadas de margem intramês",
-    "Aluguel e financiamento são hipóteses, sem disponibilidade histórica comprovada de empréstimo",
-    "Reservatório conhecido retrospectivamente, sem validação prospectiva",
-    "Prejuízos/insolvências ficam registrados, sem substituir trajetórias; CAGR/Sharpe indefinidos são contados",
-    "Frequências com 50 trajetórias têm erro Monte Carlo elevado; não são probabilidades futuras"
+    "Current ETF holdings are frozen: scenarios are retrospective and do not causally validate historical company/sector/country/currency limits.",
+    "Fixed universe of seasoned ETFs, without future admission of all 61 candidates",
+    "Monthly approximation does not measure intramonth losses or margin calls",
+    "Borrowing and financing are assumptions; historical borrow availability is unverified",
+    "Retrospectively known reservoir without prospective validation",
+    "Losses/insolvencies remain recorded without replacing paths; undefined CAGR/Sharpe values are counted",
+    "Frequencies from 50 paths have substantial Monte Carlo error; they are not future probabilities"
   ]
 }
