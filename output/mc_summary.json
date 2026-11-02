@@ -1,5 +1,5 @@
 {
-  "method": "Bootstrap estacionário pareado do processo líquido mensal",
+  "method": "Paired stationary bootstrap of the net monthly process",
   "paths": 10000,
   "horizon_months": 300,
   "horizon_years": 25.0,
@@ -9,11 +9,11 @@
   "omitted_edge_months": [],
   "mean_block_months": 6.0,
   "seed": 451063,
-  "exposure_information": "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
-  "costs": "Já embutidos nos retornos líquidos; não cobrados novamente",
-  "interpretation": "Cenários condicionais da amostra; não probabilidades futuras calibradas",
-  "sharpe": "Retornos excedentes mensais em USD, anualizados por raiz de 12",
-  "drawdown": "Somente fechamentos mensais; perdas intramês podem ser maiores",
+  "exposure_information": "Current ETF holdings are frozen: scenarios are retrospective and do not causally validate historical company/sector/country/currency limits.",
+  "costs": "Already included in net returns; not charged again",
+  "interpretation": "Sample-conditional scenarios; not calibrated future probabilities",
+  "sharpe": "Monthly USD excess returns, annualized by square root of 12",
+  "drawdown": "Month-end observations only; intramonth losses may be larger",
   "strategies": [
     {
       "strategy": "Long-short",
@@ -73,7 +73,7 @@
       "probability_drawdown_below_minus_50": 0.0198
     },
     {
-      "strategy": "Somente comprado",
+      "strategy": "Long only",
       "currency": "USD",
       "terminal_wealth": {
         "p05": 6.058457855235578,
@@ -104,7 +104,7 @@
       "probability_drawdown_below_minus_50": 0.0103
     },
     {
-      "strategy": "Somente comprado",
+      "strategy": "Long only",
       "currency": "BRL",
       "terminal_wealth": {
         "p05": 11.861513764123949,
@@ -130,7 +130,7 @@
       "probability_drawdown_below_minus_50": 0.0201
     },
     {
-      "strategy": "Pesos iguais",
+      "strategy": "Equal weight",
       "currency": "USD",
       "terminal_wealth": {
         "p05": 5.827543774318971,
@@ -161,7 +161,7 @@
       "probability_drawdown_below_minus_50": 0.017
     },
     {
-      "strategy": "Pesos iguais",
+      "strategy": "Equal weight",
       "currency": "BRL",
       "terminal_wealth": {
         "p05": 13.445847354266798,
@@ -246,7 +246,7 @@
   ],
   "comparisons": [
     {
-      "reference": "Somente comprado",
+      "reference": "Long only",
       "delta_sharpe": {
         "p05": -0.009453814975973269,
         "p50": -0.005228358819204304,
@@ -264,7 +264,7 @@
       "probability_terminal_above": 0.0413
     },
     {
-      "reference": "Pesos iguais",
+      "reference": "Equal weight",
       "delta_sharpe": {
         "p05": -0.04751549730549705,
         "p50": 0.028534054113931784,
@@ -302,10 +302,10 @@
   ],
   "probability_sharpe_gain_point_one_over_both": 0.0,
   "limitations": [
-    "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
-    "Replay do algoritmo observado, sem reotimizar dentro das trajetórias",
-    "Amostra curta repetida por 25 anos; não produz novos regimes",
-    "Universo de sobreviventes e histórico já explorados",
-    "BRL nominal; sem Sharpe BRL com referência de caixa em USD"
+    "Current ETF holdings are frozen: scenarios are retrospective and do not causally validate historical company/sector/country/currency limits.",
+    "Replay of the observed algorithm without within-path reoptimization",
+    "Short sample repeated over 25 years; does not create new regimes",
+    "Survivor universe and previously explored history",
+    "Nominal BRL; no BRL Sharpe using a USD cash benchmark"
   ]
 }

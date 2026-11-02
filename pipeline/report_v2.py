@@ -13,9 +13,9 @@ from matplotlib.mathtext import math_to_image
 
 from . import config_v2 as c
 
-LABELS = {'Long-short': 'Long/short', 'Somente comprado': 'Long only',
-          'Pesos iguais': 'Equal weight', 'VT': 'VT', 'Setor 30%': 'Sector cap 30%',
-          'Setor 40%': 'Sector cap 40%', 'Aluguel 5%': 'Borrow fee 5%'}
+LABELS = {'Long-short': 'Long/short', 'Long only': 'Long only',
+          'Equal weight': 'Equal weight', 'VT': 'VT', 'Sector cap 30%': 'Sector cap 30%',
+          'Sector cap 40%': 'Sector cap 40%', 'Borrow fee 5%': 'Borrow fee 5%'}
 ROLES = {'VOO': 'Broad US equities', 'VTV': 'US value', 'VYM': 'US dividends',
          'DGRO': 'US dividend growth', 'VOOG': 'S&P 500 growth',
          'VWO': 'Emerging-market equities', 'CNDX': 'Nasdaq-100',
@@ -109,8 +109,8 @@ def run():
         'Exposure': [ROLES.get(t, str(allocation.loc[t, 'name'])) for t in weights.index],
         'Weight': [pct(x) for x in weights], 'Position': ['Long' if x > 0 else 'Short' for x in weights]}))
     main = metrics.loc['Long-short']
-    comparison = ('undefined' if pd.isna(main.sharpe) or pd.isna(metrics.loc['Somente comprado', 'sharpe'])
-                  else 'higher than' if main.sharpe > metrics.loc['Somente comprado', 'sharpe'] else 'no higher than')
+    comparison = ('undefined' if pd.isna(main.sharpe) or pd.isna(metrics.loc['Long only', 'sharpe'])
+                  else 'higher than' if main.sharpe > metrics.loc['Long only', 'sharpe'] else 'no higher than')
     def performance(names):
         return table(pd.DataFrame([{'Strategy': LABELS.get(t, t), 'CAGR': pct(metrics.loc[t, 'cagr']),
             'Volatility': pct(metrics.loc[t, 'volatility']), 'Sharpe': num(metrics.loc[t, 'sharpe']),
@@ -190,14 +190,14 @@ def run():
 <p>{short_text} All weights belong to block C. Return estimates end in September; holdings files have their own dates. Any short position would require a confirmed borrow before execution.</p>
 {weight_table}
 <p>ETF and country caps help shape this solution. These weights are not a universal optimum.</p>
-{figure('02-pesos', 'Rounded weights; the CSV retains full precision and all 61 candidates. Permission to short does not require a short position.')}
+{figure('02-weights', 'Rounded weights; the CSV retains full precision and all 61 candidates. Permission to short does not require a short position.')}
 <h3>Historical experiment, after costs</h3>
-{performance(['Long-short', 'Somente comprado', 'Pesos iguais', 'VT'])}
+{performance(['Long-short', 'Long only', 'Equal weight', 'VT'])}
 <p>From July 2019 to September 2026, the long/short Sharpe is {comparison} the long-only Sharpe. Shorts appeared in {int((shorts > .0001).sum())} of {len(shorts)} decisions, reaching {pct(shorts.max(), 1)} of wealth. These results describe the frozen-holdings experiment.</p>
 <p>Against VT over the same period, long/short regression alpha is {num(main.get('alpha_annual', np.nan) * 100, 2)} percentage points per year and beta is {num(main.get('beta', np.nan), 2)}. These are descriptive historical estimates, not causal effects or evidence of skill.</p>
-{figure('01-historico', 'Net returns, equal starting capital and no invented contributions. Current holdings are frozen throughout the retrospective experiment.')}
+{figure('01-history', 'Net returns, equal starting capital and no invented contributions. Current holdings are frozen throughout the retrospective experiment.')}
 <p>Converted to reais, the portfolio’s nominal CAGR is {pct(brl.loc['Long-short', 'cagr'])}, with a maximum drawdown of {pct(brl.loc['Long-short', 'max_drawdown'])}. This is the same portfolio translated through FX, before inflation and individual taxes. BRL Sharpe is not computed against US cash.</p>
-{figure('03-exposicoes', 'Gross exposure adds long and short exposures instead of netting away concentration. Countries, currencies and the full limits are retained in the CSV files.')}
+{figure('03-exposures', 'Gross exposure adds long and short exposures instead of netting away concentration. Countries, currencies and the full limits are retained in the CSV files.')}
 <h3>Monte Carlo — other sequences of market returns</h3>
 <p class="meta">CAGR is compound annual growth. The p05–p95 range contains the central 90% of simulated outcomes.</p>
 <p>The paired bootstrap uses {mc['paths']:,} paths, sampling the same blocks for strategies, cash and FX. It resamples net returns without charging costs twice. A separate experiment generates ETF returns and repeats the decisions: {dynamic['paths']} paths, {dynamic['test_months']} evaluated months and {dynamic['optimizer_fits']:,} optimizations.</p>

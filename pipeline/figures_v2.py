@@ -9,8 +9,8 @@ from . import config_v2 as c
 
 INK, MUTED, LINE = '#1c2420', '#5c6b63', '#d5ded8'
 GREEN, BLUE, GOLD, RED = '#1f6b56', '#24558a', '#a8843a', '#8e3a32'
-COLORS = {'Long-short': GREEN, 'Somente comprado': BLUE, 'Pesos iguais': GOLD, 'VT': MUTED}
-LABELS = {'Long-short': 'Long/short', 'Somente comprado': 'Long only', 'Pesos iguais': 'Equal weight', 'VT': 'VT'}
+COLORS = {'Long-short': GREEN, 'Long only': BLUE, 'Equal weight': GOLD, 'VT': MUTED}
+LABELS = {'Long-short': 'Long/short', 'Long only': 'Long only', 'Equal weight': 'Equal weight', 'VT': 'VT'}
 ETF_COLORS = {'VOO': '#0e2744', 'VTV': BLUE, 'VYM': '#3d6ea8', 'DGRO': '#5c83ac',
               'VOOG': '#7fa4d4', 'CNDX': '#0e2744', 'VWO': '#7dbeab',
               'IWMO': '#1f8a72', 'DIVO11': '#b8862a'}
@@ -47,7 +47,7 @@ def run():
     axes[1].yaxis.set_major_formatter(PercentFormatter(1))
     for ax in axes:
         ax.grid(alpha=.5)
-    save(fig, '01-historico')
+    save(fig, '01-history')
     allocation = pd.read_csv(c.OUT / 'allocation.csv').set_index('ticker')
     weights = allocation.weight[allocation.weight.abs() > .0001].sort_values()
     fig, ax = plt.subplots(figsize=(9, max(3, len(weights) * .24)))
@@ -56,12 +56,12 @@ def run():
     ax.xaxis.set_major_formatter(PercentFormatter(1))
     ax.grid(axis='x', alpha=.5)
     ax.set_title('Proposed allocation: long and short positions')
-    save(fig, '02-pesos')
+    save(fig, '02-weights')
     exposures = pd.read_csv(c.OUT / 'lookthrough.csv')
     fig, axes = plt.subplots(1, 2, figsize=(10, 4.5))
     for ax, kind, title, cap in zip(axes, ['company', 'sector'],
             ['Largest companies — gross exposure', 'Largest sectors — gross exposure'], [c.COMPANY_MAX, c.SECTOR_MAX]):
-        selected = exposures.loc[exposures.kind.eq(kind) & ~exposures.name.str.startswith('Não identificado')].nlargest(8, 'gross').sort_values('gross')
+        selected = exposures.loc[exposures.kind.eq(kind) & ~exposures.name.str.startswith('Unidentified')].nlargest(8, 'gross').sort_values('gross')
         names = selected.name.str.replace('issuer:', '', regex=False).str.replace('United States:', '', regex=False)
         if kind == 'company':
             names = names.map(lambda x: COMPANIES.get(x, x))
@@ -71,4 +71,4 @@ def run():
         ax.set_title(title, fontsize=10)
         ax.grid(axis='x', alpha=.5)
         ax.legend()
-    save(fig, '03-exposicoes')
+    save(fig, '03-exposures')

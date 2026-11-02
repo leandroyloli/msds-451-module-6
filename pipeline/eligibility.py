@@ -1,4 +1,4 @@
-"""Filtros causais e escolha fixa de representantes equivalentes."""
+"""Causal filters and fixed selection of equivalent representatives."""
 from functools import lru_cache
 import pandas as pd
 from . import config_v2 as c

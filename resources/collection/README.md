@@ -1,20 +1,9 @@
-# Fonte histórica da coleta
+# Historical collection source
 
-`holdings_v2.py` é uma cópia preservada do programa exploratório que recuperou e
-normalizou as composições do estudo de origem. Não é chamado pelo `run.py` e seus
-caminhos originais não foram adaptados para fingir uma coleta nova.
+`holdings_v2.py` preserves the exploratory source that retrieved and normalized the original holdings. It is not called by `run.py`; its original paths were not adapted to imply a new collection.
 
-O processo consultou páginas dos emissores, arquivos completos CSV/JSON/XLSX,
-dados públicos da CVM e intermediários de normalização; cruzou identificadores
-de títulos para completar classificações e documentou o que continuou ausente.
-Algumas etapas exploratórias produziram arquivos `stage`, HTML e JavaScript no
-workspace original. Este arquivo isolado não promete reconstruir toda a coleta
-ou reproduzir uma nova fotografia das fontes online.
+The process consulted issuer pages, complete CSV/JSON/XLSX files, public CVM records and normalization intermediates. It cross-matched security identifiers to complete classifications and documented remaining gaps. Exploratory steps created stage files, HTML and JavaScript in the original workspace. This single file does not promise to reconstruct the entire collection or obtain a new online snapshot.
 
-Os 46 arquivos brutos efetivamente referenciados no manifesto final estão em
-`../../data/holdings/`; os hashes desses arquivos foram conferidos após a cópia.
-`../../data/holdings/manifest.json` descreve fontes e transformações. Os dados
-normalizados congelados são suficientes para refazer todo o estudo nesta pasta,
-sem rede nem dependência do workspace de origem.
+The 46 raw files referenced by the final manifest are in `../../data/holdings/`, with verified copy hashes. That folder's manifest records sources and transformations. Frozen normalized inputs suffice to rerun the study offline without the original workspace.
 
-Origem preservada: `C:/studing/msds-451-module-6/pipeline/holdings_v2.py`.
+Original collection location: `C:/studing/msds-451-module-6/pipeline/holdings_v2.py` before folder relocation. Portuguese strings in the collector are source field names/classification tokens required to parse authentic CVM records, not untranslated interface prose.

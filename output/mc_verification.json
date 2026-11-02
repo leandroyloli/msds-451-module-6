@@ -1,13 +1,13 @@
 {
   "passed": true,
   "checks": [
-    "Composição geométrica mensal conferida independentemente",
-    "Índices idênticos para estratégias, caixa e câmbio",
-    "Seed reproduzível e frequência de continuação geométrica",
-    "Par idêntico produz métricas idênticas",
-    "Riqueza BRL equivale à riqueza USD vezes câmbio composto",
+    "Monthly geometric compounding independently checked",
+    "Identical indices for strategies, cash and FX",
+    "Reproducible seed and geometric continuation frequency",
+    "Identical pairs produce identical metrics",
+    "BRL wealth equals USD wealth times compounded FX",
     "Drawdown inclui o patrimônio inicial",
-    "Custos líquidos não são descontados em duplicidade"
+    "Net costs are not deducted twice"
   ],
   "continuation_fraction": 0.8357217391304348,
   "expected_continuation_fraction": 0.8352490421455939

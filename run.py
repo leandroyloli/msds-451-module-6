@@ -1,4 +1,4 @@
-"""Estudo revisto do bloco C; dados locais, sem publicar ou usar Git."""
+"""Revised block C study using local data without publication or Git operations."""
 from pathlib import Path
 import argparse
 import hashlib
@@ -15,7 +15,7 @@ def supplements():
     from pipeline.utilities import metrics
     r=pd.read_csv(ROOT/"output/daily_returns.csv",index_col=0,parse_dates=True)
     rows=[]
-    for name in ["Long-short","Somente comprado","Pesos iguais","VT"]:
+    for name in ["Long-short","Long only","Equal weight","VT"]:
         values=metrics((1+r[name])*(1+r.FX)-1,r.RF*0)
         values.pop("sharpe")
         rows.append(dict(strategy=name,**values))
@@ -24,8 +24,8 @@ def supplements():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check",action="store_true",help="Confere dados, contas e resultados salvos")
-    parser.add_argument("--report-only",action="store_true",help="Reconstrói figuras e HTML a partir dos resultados salvos")
+    parser.add_argument("--check",action="store_true",help="Verify saved data, accounting and results")
+    parser.add_argument("--report-only",action="store_true",help="Rebuild figures and HTML from saved results")
     args=parser.parse_args()
     if args.check:
         from pipeline.verify_v2 import run

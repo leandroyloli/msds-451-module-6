@@ -1,73 +1,35 @@
-# Monte Carlo da versão comprada/vendida
+# Monte Carlo for the long/short study
 
-O módulo `pipeline/simulation_v2.py` escreve somente em `output/v2`. Os arquivos
-da primeira versão ficam preservados.
+`pipeline/simulation_v2.py` writes to `output/`. The original study remains preserved outside this repository.
 
-## Experimento 1: incerteza do processo líquido
+## Experiment 1: uncertainty in the net process
 
-- Entradas: `Long-short`, `Somente comprado`, `Pesos iguais`, `VT`, `RF` e `FX`
-  em `output/v2/daily_returns.csv`.
-- Os retornos diários são compostos geometricamente em meses completos. Não se
-  descontam novamente custos já presentes nesses retornos líquidos.
-- Bootstrap estacionário circular pareado: todos os ETFs/estratégias, caixa e
-  câmbio recebem exatamente o mesmo índice sorteado em cada mês. O comprimento
-  esperado do bloco é seis meses; seed fixo.
-- 10.000 trajetórias com horizonte de 300 meses (25 anos). Percentis são cenários
-  condicionais, não probabilidades futuras calibradas.
-- Intervalos pareados de 95% usam 2.000 reamostragens do horizonte observado,
-  separadamente com blocos esperados de 3, 6 e 12 meses. Não se escolhe o bloco
-  cujo resultado for mais favorável.
-- Sharpe é mensal, anualizado por raiz de 12. Drawdown é observado nos
-  fechamentos mensais; pode ser menor que a perda intramês. BRL é conversão
-  conjunta nominal, sem chamar o caixa em USD de ativo livre de risco em BRL.
+- Saved daily net returns are compounded geometrically into complete months. Embedded costs are not deducted again.
+- Circular paired stationary bootstrap gives strategies, cash and FX the same sampled index each month. Expected block length is six months, with a fixed seed.
+- 10,000 paths span 300 months (25 years). Percentiles are conditional scenarios, not calibrated future probabilities.
+- Historical-horizon confidence intervals use 2,000 resamples separately with expected block lengths 3, 6 and 12 months; the most favorable block is not selected afterward.
+- Monthly Sharpe annualizes by square root of 12. Drawdown is observed at month-end and may miss larger intramonth losses. BRL conversion is reported without a BRL Sharpe referenced to USD cash.
 
-Esse replay mede a variabilidade do processo líquido histórico; ele não refaz
-o otimizador a cada passo sintético.
+Replay measures variability of the observed net process; it does not refit the optimizer at each synthetic step.
 
-## Experimento 2: algoritmo reestimado em dados gerados
+## Experiment 2: synthetic returns with new decisions
 
-- Fixar o universo que passa pelo histórico/liquidez em junho de 2019,
-  intersectado com a cobertura atual completa de composição.
-- Gerar vetores conjuntos de retornos de ETFs, caixa e FX em blocos. O
-  reservatório começa em julho de 2014, inclui COVID e termina em setembro de
-  2026, sujeito à interseção efetivamente disponível.
-- Gerar 50 trajetórias. Cada uma tem 60 meses de treinamento e 60 de teste.
-- Reestimar os dois modelos a cada mês de teste: comprado/vendido e somente
-  comprado. Isso dá 6.000 otimizações quando não há insolvências.
-- O retorno de manutenção nunca entra em sua própria janela de estimação.
-  A taxa de caixa do mês é uma proxy derivada do último DGS3MO conhecido antes
-  daquele mês no arquivo de origem.
-- Usar `model_v2.Optimizer`, `closest_band` e `execution_v2.Account`, com as
-  mesmas restrições, bandas, negociação, gestão, aluguel e financiamento.
-- Conta separa posições assinadas, caixa, garantia e dívida. Retornos ajustados
-  já incluem distribuições: não se cobra o dividendo outra vez na ponta vendida.
-- Chamadas de margem detectadas no fechamento anterior são liquidadas na
-  próxima execução mensal; isso é uma aproximação, não uma simulação diária de
-  corretora. Trajetórias insolventes mantêm seu déficit e nunca são descartadas.
-  Métricas sem definição após insolvência ficam ausentes com contagem explícita.
-- Falha do solver interrompe o estudo, em vez de remover silenciosamente a
-  trajetória. Hashes do modelo e da contabilidade precisam permanecer iguais
-  durante toda a execução.
+- Fix the June 2019 history/liquidity-eligible universe, intersected with current complete holdings coverage.
+- Use jointly available ETF, cash and FX vectors. The reservoir starts July 2014, includes COVID and ends September 2026, subject to complete common coverage.
+- Generate 50 paths, each with 60 training and 60 testing months.
+- Refit expected returns, covariance and both long/short and long-only portfolios each month: 6,000 fits absent insolvencies.
+- A holding-period return never enters its own training window. Monthly cash return is approximated from the latest DGS3MO yield known before the source month.
+- Use the same constraints, bands, trading, management, borrowing and financing rules.
+- Separate signed holdings, cash, collateral and debt. Adjusted returns already include distributions; shorts do not pay them twice.
+- Margin breaches detected at the previous close are liquidated at the next monthly execution. This is an approximation, not a daily broker simulation. Insolvent paths retain deficits and are never discarded; undefined metrics remain missing with explicit counts.
+- Record path-level outcomes and a verification trace. Model and accounting hashes must remain unchanged during simulation.
 
-## Limitação que deve ficar visível no HTML
+## Mandatory visible limitation
 
-**A matriz de empresas, setores, países e moedas é uma fotografia atual dos
-emissores. Congelar essa fotografia sobre preços antigos é um cenário
-retrospectivo. Não é uma validação causal dos limites históricos de composição.**
+The company/sector/country/currency matrix is a current issuer snapshot. Freezing it over earlier prices creates a retrospective scenario, not causal validation of historical concentration.
 
-Os testes de preços/estimativas mantêm ordem temporal, mas isso não remove a
-informação posterior embutida na matriz congelada e na cobertura atual do
-universo. Para afirmar execução histórica fiel desses limites seria necessária
-uma série de carteiras completas dos emissores conhecida em cada data.
+Chronological prices and training do not remove future information in the frozen matrix or current universe coverage. Faithful historical execution requires complete holdings known at each decision. With 50 dynamic paths, frequencies have two-percentage-point resolution and maximum Monte Carlo standard error about 7.1 points, in addition to uncertainty in data, returns, borrowing and future regimes.
 
-Com 50 trajetórias dinâmicas, uma proporção tem resolução de dois pontos
-percentuais e erro-padrão Monte Carlo máximo de aproximadamente 7,1 pontos.
-Isso é adicional à incerteza de dados, retornos, aluguel e regimes futuros.
+## Outputs
 
-## Saídas
-
-`mc_summary.json`, `mc_percentiles.csv`, `mc_intervals.csv`,
-`mc_terminal_samples.csv`, `mc_monthly_returns.csv`, `mc_verification.json`;
-`mc_dynamic_summary.json`, `mc_dynamic_paths.csv`, `mc_dynamic_trace.csv`,
-`mc_dynamic_reservoir.csv`, `mc_dynamic_rf_source.json` e
-`mc_dynamic_verification.json`.
+Paired outputs include `mc_summary.json`, monthly returns, percentile paths, terminal samples, intervals and verification. Dynamic outputs include `mc_dynamic_summary.json`, path metrics, reservoir, cash-source record, trace and verification. Later translation changes are separately documented; they do not imply a new simulation execution.

@@ -77,7 +77,7 @@ class ExposureBook:
                 if gross[name]>1e-6:
                     output.append(dict(kind=kind,name=name,gross=float(gross[name]),net=float(net[name])))
             unknown=sum(self.unknown.get((kind,t),1.)*abs(v) for t,v in weights.items())
-            output.append(dict(kind=kind,name="Não identificado / arredondamento",gross=float(unknown),net=np.nan))
+            output.append(dict(kind=kind,name="Unidentified / rounding",gross=float(unknown),net=np.nan))
         return pd.DataFrame(output)
 
 
@@ -268,12 +268,12 @@ def run_temporal_control(study=None):
 def run():
     study=prepare()
     variants=[("Long-short",False,None,c.BORROW,None),
-              ("Somente comprado",True,None,c.BORROW,None),
-              ("Pesos iguais",True,None,c.BORROW,"equal"),
+              ("Long only",True,None,c.BORROW,None),
+              ("Equal weight",True,None,c.BORROW,"equal"),
               ("VT",True,None,c.BORROW,"VT"),
-              ("Setor 30%",False,.30,c.BORROW,None),
-              ("Setor 40%",False,.40,c.BORROW,None),
-              ("Aluguel 5%",False,None,.05,None)]
+              ("Sector cap 30%",False,.30,c.BORROW,None),
+              ("Sector cap 40%",False,.40,c.BORROW,None),
+              ("Borrow fee 5%",False,None,.05,None)]
     ds=[];ts=[];ws=[];accounts={}
     for label,lo,sector,borrow,benchmark in variants:
         print("v2 backtest:",label,flush=True)

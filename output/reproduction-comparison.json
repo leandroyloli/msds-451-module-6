@@ -4,7 +4,8 @@
   "archived_origin": "C:\\studing\\msds-451-module-6-temp",
   "input_hash_checks": 84,
   "csv_reproduction_matches": 19,
-  "comparisons": [
+  "git_initialized": false,
+  "pretranslation_comparisons": [
     {
       "file": "accounting.csv",
       "origin_sha256": "ab315938ace871e998802379afcdb74efe7c73c3e49f8c2f8ace750c3d06cadc",
@@ -120,5 +121,7 @@
       "identical": true
     }
   ],
-  "git_initialized": false
+  "translation_provenance": "../resources/translation-provenance.json",
+  "current_numeric_equivalence_verified": true,
+  "description": "Historical byte-equality record before English translation; current numeric equivalence is independently recorded in translation provenance."
 }

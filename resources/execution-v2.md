@@ -1,110 +1,71 @@
-# Contabilidade da carteira comprada e vendida — v2
+# Long/short portfolio accounting — v2
 
-O arquivo `pipeline/execution_v2.py` acrescenta uma conta assinada ao estudo.
-Ele não altera preços, resultados ou código da versão anterior. As restrições
-de alocação pertencem ao modelo chamador; esta classe cuida do dinheiro.
+`pipeline/execution_v2.py` adds signed accounting. Allocation constraints belong to the calling model; the account handles money and does not alter the earlier study's prices or results.
 
 ## API
 
-- `Account(initial_nav=1)` começa com uma unidade de caixa e nenhuma posição.
-- `holdings` contém valores em USD: positivos comprados e negativos vendidos.
-- `cash`, `collateral` e `debt` são saldos distintos em USD.
-- `nav` é `sum(holdings) + cash + collateral - debt`.
-- `long_value` e `short_value` são valores absolutos em USD.
-- `long`, `short`, `gross` e `net` são exposições divididas pelo NAV.
-- `margin_required` é o valor em USD da política de manutenção;
-  `margin_ratio` é esse valor dividido pelo NAV.
-- `rebalance(target, cost_rate=.001)` executa pesos cuja soma líquida é um.
-- `mark(returns)` aplica os retornos totais de um período e remarca garantias.
-- `accrue(days, rfannual, ...)` lança juros e taxas pelo caixa/débito.
-- `liquidate(cost_rate=.001)` encerra as posições, libera garantias e quita o
-  débito até onde o patrimônio permite. Um saldo devedor remanescente fica
-  registrado; não se transforma insolvência em uma conta de caixa positiva.
+- `Account(initial_nav=1)` starts with one cash unit and no positions.
+- `holdings` contains USD values, positive for longs and negative for shorts.
+- `cash`, `collateral` and `debt` are separate USD balances.
+- `nav = sum(holdings) + cash + collateral - debt`.
+- `long_value` and `short_value` are absolute USD values; `long`, `short`, `gross` and `net` divide exposures by NAV.
+- `margin_required` is the policy's USD maintenance requirement; `margin_ratio` divides it by NAV.
+- `rebalance(target, cost_rate=.001)` trades weights whose net sum is one.
+- `mark(returns)` applies one period's total returns and remarks collateral.
+- `accrue(days, rfannual, ...)` charges interest and fees through cash/debt.
+- `liquidate(cost_rate=.001)` closes positions, releases collateral and repays debt only as far as wealth permits. An unpaid deficit remains recorded; insolvency never becomes positive cash.
 
-## Uma venda não cria patrimônio
+## Short sales do not create wealth
 
-Para pesos líquidos somando 100%, uma carteira com 120% comprado e 20% vendido
-continua com patrimônio de 100%. Sua exposição bruta é 140%.
+With net weights summing to 100%, a 120% long / 20% short portfolio still has 100% wealth and 140% gross exposure. The conservative study assumption restricts all short proceeds as unremunerated collateral. For short value `S` and multiplier `h`, collateral is `h*S`; separate financing is also `h*S` after rebalancing.
 
-Adotamos como hipótese conservadora de estudo que o produto da venda fica
-integralmente restrito em garantia, sem remuneração. Com vendido `S` e
-multiplicador de garantia `h`, a garantia é `h*S`. O financiamento separado
-necessário para sustentar a carteira líquida é também `h*S` após o rebalanceamento.
+For `h=1`:
 
-No caso `h=1`, os valores são:
-
-| Saldo | Valor por unidade de patrimônio |
+| Balance | Value per unit of wealth |
 |---|---:|
-| ETFs comprados | 1,20 |
-| ETFs vendidos, obrigação | −0,20 |
-| Caixa restrito em garantia | +0,20 |
-| Financiamento | −0,20 |
-| Patrimônio líquido | 1,00 |
+| Long ETFs | 1.20 |
+| Short ETF obligation | −0.20 |
+| Restricted collateral | +0.20 |
+| Financing | −0.20 |
+| Net wealth | 1.00 |
 
-Assim não contamos o produto da venda duas vezes. Se a posição vendida sobe,
-a garantia exigida cresce e o débito financia essa transferência. Se cai, a
-liberação de garantia primeiro reduz o débito. Transferir garantia não gera
-lucro ou perda; apenas a variação do ativo e os encargos mudam o NAV.
+This avoids double-counting proceeds. A short-price increase raises required collateral, financed by debt; a decrease releases collateral and reduces debt first. Collateral transfers create no profit or loss. Only asset movements and charges change NAV.
 
-## Custos
+## Costs
 
-As hipóteses padrão, alteráveis explicitamente pelo chamador, são:
+Defaults, explicitly overridable by the caller:
 
-- Gestão adicional: 0,25% ao ano sobre o patrimônio positivo.
-- Aluguel: 2% ao ano sobre o valor vendido.
-- Financiamento: taxa anual USD defasada fornecida pelo chamador mais 1 ponto
-  percentual, sobre o débito efetivamente registrado.
-- Remuneração da garantia: zero no cenário padrão.
-- Caixa livre: remuneração pela taxa USD fornecida, salvo configuração diferente.
-- Negociação: 0,10% sobre todo valor comprado ou vendido, inclusive abrir e
-  fechar posições negativas e a entrada inicial.
+- Additional management: 0.25% annually on positive wealth.
+- Borrowing: 2% annually on short value.
+- Financing: supplied lagged annual USD cash rate plus one percentage point, charged on recorded debt.
+- Collateral rebate: zero.
+- Free cash: supplied USD cash rate unless configured otherwise.
+- Trading: 0.10% of all bought/sold value, including initial entry and opening/closing shorts.
 
-Os encargos usam dias corridos/365 e são pagos pelo caixa ou pelo financiamento.
-**Não vendemos ou redimensionamos posições silenciosamente todo dia para pagar
-taxas.** O débito acumulado reduz o NAV e só é liquidado economicamente na próxima
-negociação ou no encerramento.
+Charges use calendar days/365 and pass through cash or financing. Positions are not silently sold or rescaled daily to pay fees. Accrued debt reduces NAV and is economically settled at the next trade or liquidation.
 
-Retornos ajustados já incorporam distribuições no resultado dos ativos. Uma
-posição negativa multiplicada pelo retorno total tem o sinal oposto, incluindo
-essas distribuições. Cobrar novamente dividendos do vendido duplicaria o custo.
-Esta é uma representação por unidades de retorno total, não um livro de ações,
-proventos e datas de pagamento individualizadas.
+Adjusted returns already include distributions. A negative weight reverses total return, including distributions; charging the short dividend again would duplicate cost. This is a total-return-unit representation, not a share/distribution ledger with individual payment dates.
 
-## Rebalanceamento autofinanciado
+## Self-financing rebalancing
 
-Com valores assinados anteriores `v`, pesos-alvo `w`, custo proporcional `c` e
-patrimônio anterior `N`, resolvemos:
+For old signed values `v`, target weights `w`, proportional cost `c` and old wealth `N`, solve:
 
-`N_depois = N - c * sum(abs(w * N_depois - v))`.
+`N_after = N - c * sum(abs(w * N_after - v))`.
 
-Depois abrimos os valores `w * N_depois`. Garantia e débito novos se compensam;
-os custos de juros já acumulados não são perdoados. A conservação do caixa é
-verificada também pela identidade independente entre compras, vendas e a
-liquidação do financiamento anterior.
+New positions are `w*N_after`. New collateral and debt offset; accrued interest is not forgiven. An independent cash identity reconciles buys, sells and repayment of old financing.
 
-## Garantias, chamadas e falhas
+## Margin and failure
 
-A política de manutenção usada pela classe é `0,25*comprado + 0,30*vendido`, em
-USD. Ela é uma hipótese do experimento e **não certifica** margens de uma
-corretora, mercado ou ETF. Disponibilidade de aluguel, mudanças de taxa,
-recolhimento do empréstimo e diferenças entre instrumentos ainda exigem dados
-de operação. O material primário de custos e margem é tratado no memo de
-desenho; esta implementação não inventa termos individuais de corretagem.
+Maintenance is the academic USD proxy `0.25*long_value + 0.30*short_value`, not certification of any broker, market or ETF margin rules. Borrow availability, changing fees, recalls and product differences require operational data; account-specific brokerage terms are not invented.
 
-`margin_breached` sinaliza a insuficiência; a classe não decide uma venda na
-mesma cotação que acabou de revelar a chamada. O motor temporal deve agendar
-a ação em um instante executável posterior. Insolvência é retida como evento,
-sem excluir uma trajetória ruim do Monte Carlo.
+`margin_breached` flags insufficiency. The account does not sell using the same quote that revealed the breach; the temporal engine must schedule a later executable action. Insolvency remains an event and no failed Monte Carlo path is removed.
 
-## Verificação
+## Verification
 
-`self_test()` retorna verificações sem gravar arquivo por padrão. A gravação
-é explícita, por exemplo:
+`self_test()` returns checks without writing by default. Explicit output:
 
 ```powershell
 uv run --no-project --with-requirements requirements.txt python -m pipeline.execution_v2 --self-test --output output/execution_v2_checks.json
 ```
 
-Os exemplos verificam entrada, perdas e ganhos de uma posição negativa,
-garantias sem lucro fictício, custos, ausência de negociação diária oculta,
-encerramento solvente e insolvente e cem períodos de movimentos aleatórios.
+Tests cover entry, short gains/losses, collateral without fictitious profit, costs, no hidden daily trading, solvent/insolvent closure and 100 periods of random movements.

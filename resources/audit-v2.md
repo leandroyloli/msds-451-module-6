@@ -1,64 +1,31 @@
-# Revisão independente da implementação v2
+# Independent review of implementation v2
 
-Revisão retomada após reinício do servidor. Escopo: `model_v2.py`,
-`study_v2.py`, `execution_v2.py` e `simulation_v2.py`. Não é certificação de
-desempenho nem de uma carteira real. Os resultados finais ainda dependem da
-execução e dos dados de composição congelados pelo responsável pelo estudo.
+Review resumed after a server restart. Scope: `model_v2.py`, `study_v2.py`, `execution_v2.py` and `simulation_v2.py`. This is not certification of performance or a real portfolio; final results depend on execution and frozen holdings data.
 
-## Achados materiais e correções verificadas no código
+## Material findings resolved in code
 
-1. A projeção por bandas originalmente consultava os pesos depois do retorno
-   do fechamento que também executava a ordem. Agora usa `old_signal`, o mesmo
-   retrato anterior empregado pela otimização. Achado resolvido.
-2. Resíduos numéricos da igualdade dos pesos podiam violar a identidade de
-   caixa mais estrita. Os produtores de pesos normalizam o resíduo e voltam a
-   verificar limites e CVaR. Achado resolvido.
-3. A banda originalmente não repetia todos os testes depois da normalização.
-   A versão inspecionada verifica soma, posições, exposição bruta, A|w| e CVaR.
-   Achado resolvido.
-4. Uma insolvência não pode continuar a operar e recuperar espontaneamente.
-   O histórico agora liquida, conserva o déficit e congela a estratégia;
-   métricas convencionais ficam indefinidas quando houver insolvência.
-   Não se trunca uma perda superior a 100% para aparentar proteção.
+1. Band projection formerly used weights after the closing return that executed the order. It now uses `old_signal`, the same earlier snapshot used by optimization.
+2. Numerical weight-equality residuals could violate the stricter cash identity. Weight producers normalize residuals and recheck limits and CVaR.
+3. Bands formerly omitted validation after normalization. The inspected version checks net sum, position bounds, gross exposure, `A|w|` and CVaR.
+4. Insolvency must not continue trading and recover spontaneously. History liquidates, retains the deficit and freezes the strategy. Conventional metrics become undefined; losses greater than 100% are not clipped to suggest protection.
 
-## Matemática e contabilidade
+## Mathematics and accounting
 
-- A transformação homogênea do Sharpe é coerente quando o excesso esperado
-  positivo existe. A revisão anterior desta mesma tarefa comparou o resultado
-  com SLSQP independente em dez ativos sintéticos: diferença do Sharpe de
-  aproximadamente 6,2e-11, sem violação. Esse teste é registrado como evidência
-  da revisão anterior, não como execução repetida após o reinício.
-- As variáveis compradas e vendidas impõem A(p+q); a verificação final usa
-  A|w|. Isso limita concentração bruta e não deixa compensações líquidas
-  esconderem grandes posições.
-- O estimador de médias é inspirado em Bayes–Stein, com adaptação da
-  covariância para Ledoit–Wolf; não é reprodução exata de Jorion nem prior VT.
-- `Account` distingue posições, caixa, garantia e financiamento. Proceeds não
-  entram duas vezes no patrimônio. Retornos ajustados já incorporam o efeito
-  das distribuições, inclusive para posições negativas.
-- Custos correntes passam por caixa/dívida, sem vendas invisíveis diárias.
-- As 23 verificações sintéticas de `execution_v2.self_test()` foram repetidas
-  após a retomada, sem gravar sobre resultados reais.
+- The homogeneous Sharpe transformation is coherent when a positive expected excess return exists. The earlier review compared it with independent SLSQP on ten synthetic assets: Sharpe difference approximately 6.2e−11 without violation. This records prior evidence, not a new test after restart.
+- Long/short variables constrain `A(p+q)`; final validation uses `A|w|`, preventing netting from hiding concentration.
+- Mean estimation is Bayes–Stein-inspired with Ledoit–Wolf covariance, not exact Jorion replication or a VT prior.
+- `Account` separates holdings, cash, collateral and financing. Proceeds are not counted twice. Adjusted returns already include distributions, including on shorts.
+- Current fees pass through cash/debt without hidden daily sales.
+- The 23 synthetic accounting checks were repeated after restart without overwriting real results.
 
-## Condições para interpretação e entrega
+## Interpretation conditions
 
-- **Sem certificação histórica de composição:** arquivos atuais de setembro/
-  outubro de 2026, aplicados a 2019, são um experimento retrospectivo de matriz
-  congelada. A cronologia dos preços não resolve esse viés de composição.
-- Se todo excesso esperado for negativo, o código emprega mínima variância
-  com o mesmo mandato. Contar e relatar essas decisões; não chamar todos os
-  períodos de maximização de Sharpe.
-- `TC × 12 × turnover` é a anualização do custo projetado do mês da decisão,
-  não uma previsão independente do giro anual.
-- As métricas em `diag` de `trades.csv` são calculadas antes da projeção por
-  bandas. Recalcular se forem apresentadas como previsão da carteira executada,
-  ou identificá-las como diagnóstico do alvo otimizado.
-- Cobertura de emissores, classificação setorial, conversões e fonte dos
-  dados faltantes precisam de auditoria final dos arquivos estabilizados.
-- Moeda de negociação dos títulos é uma proxy observável, não exposição
-  econômica às receitas e dívidas das empresas.
-- Aluguel, financiamento, disponibilidade e margem são hipóteses do estudo,
-  não condições históricas verificadas de todos os ETFs e corretores.
+- September/October 2026 snapshots applied to 2019 are a frozen retrospective experiment; chronological prices do not resolve composition look-ahead.
+- If all expected excess opportunities are nonpositive, constrained minimum variance is used. Count and disclose those decisions rather than calling every fit maximum Sharpe.
+- `TC*12*turnover` annualizes the current decision's projected monthly trade cost, not an independently forecast annual turnover.
+- `optimized_` trade diagnostics describe the pre-band target, not the executed portfolio's forecast.
+- Final issuer coverage, classification, currency conversion and missing-data sources require stable-file audit.
+- Quotation currency is a proxy, not companies' complete revenue/debt FX exposure.
+- Borrowing, financing, availability and margin are assumptions, not verified historical brokerage terms.
 
-Conclusão: não foi identificado novo bloqueio matemático nas versões
-inspecionadas. Isso não substitui testes dos resultados reais e do HTML final.
+No new mathematical blocker was identified in inspected versions. This does not replace real-output or final-HTML verification.

@@ -27,11 +27,11 @@ MEAN_BLOCK_MONTHS = 6.
 DYNAMIC_PATHS = 50
 DYNAMIC_TEST_MONTHS = 60
 BURN_IN = 60
-STRATEGIES = ["Long-short", "Somente comprado", "Pesos iguais", "VT"]
+STRATEGIES = ["Long-short", "Long only", "Equal weight", "VT"]
 REQUIRED = STRATEGIES + ["RF", "FX"]
 EXPOSURE_CAVEAT = (
-    "Composição atual dos ETFs congelada: os cenários são retrospectivos e não "
-    "validam causalmente os limites por empresa/setor/país/moeda no passado."
+    "Current ETF holdings are frozen: scenarios are retrospective and do not "
+    "causally validate historical company/sector/country/currency limits."
 )
 
 
@@ -112,7 +112,7 @@ def paired(root=None, paths=PAIRED_PATHS, horizon_months=PAIRED_HORIZON_MONTHS,
                                       cagr=stats["cagr"][path],
                                       max_drawdown=stats["max_drawdown"][path]))
     comparisons = []
-    for reference in ["Somente comprado", "Pesos iguais", "VT"]:
+    for reference in ["Long only", "Equal weight", "VT"]:
         delta = measured["Long-short"]["sharpe"] - measured[reference]["sharpe"]
         comparisons.append(dict(reference=reference, delta_sharpe=_q(delta),
                                 delta_cagr=_q(measured["Long-short"]["cagr"] - measured[reference]["cagr"]),
@@ -120,7 +120,7 @@ def paired(root=None, paths=PAIRED_PATHS, horizon_months=PAIRED_HORIZON_MONTHS,
                                 probability_sharpe_gain_point_one=float(np.mean(delta >= .1)),
                                 probability_terminal_above=float(np.mean(
                                     measured["Long-short"]["terminal"] > measured[reference]["terminal"]))))
-    joint = ((measured["Long-short"]["sharpe"] - measured["Pesos iguais"]["sharpe"] >= .1)
+    joint = ((measured["Long-short"]["sharpe"] - measured["Equal weight"]["sharpe"] >= .1)
              & (measured["Long-short"]["sharpe"] - measured["VT"]["sharpe"] >= .1))
     interval_rows = []
     for block in [3, 6, 12]:
@@ -129,7 +129,7 @@ def paired(root=None, paths=PAIRED_PATHS, horizon_months=PAIRED_HORIZON_MONTHS,
         stats = {name: _metric_arrays(data[idx, names.index(name)], sample_cash, n_obs)[0]
                  for name in STRATEGIES}
         gate = np.ones(interval_paths, bool)
-        for reference in ["Somente comprado", "Pesos iguais", "VT"]:
+        for reference in ["Long only", "Equal weight", "VT"]:
             for metric in ["sharpe", "cagr"]:
                 delta = stats["Long-short"][metric] - stats[reference][metric]
                 low, median, high = np.quantile(delta, [.025, .5, .975])
@@ -138,30 +138,30 @@ def paired(root=None, paths=PAIRED_PATHS, horizon_months=PAIRED_HORIZON_MONTHS,
                                           probability_above_zero=float(np.mean(delta > 0)),
                                           probability_above_point_one=float(np.mean(delta >= .1)) if metric == "sharpe" else np.nan,
                                           resamples=interval_paths, horizon_months=n_obs, seed=seed+block))
-            if reference in {"Pesos iguais", "VT"}:
+            if reference in {"Equal weight", "VT"}:
                 gate &= stats["Long-short"]["sharpe"] - stats[reference]["sharpe"] >= .1
-        interval_rows.append(dict(mean_block_months=block, reference="Ambos benchmarks",
+        interval_rows.append(dict(mean_block_months=block, reference="Both benchmarks",
                                   metric="joint_sharpe_gate", p025=np.nan, median=np.nan,
                                   p975=np.nan, probability_above_zero=np.nan,
                                   probability_above_point_one=float(gate.mean()),
                                   resamples=interval_paths, horizon_months=n_obs, seed=seed+block))
-    summary = dict(method="Bootstrap estacionário pareado do processo líquido mensal",
+    summary = dict(method="Paired stationary bootstrap of the net monthly process",
                    paths=paths, horizon_months=horizon_months, horizon_years=horizon_months/12,
                    historical_months=n_obs, first_month=str(monthly.index.min().date()),
                    last_month=str(monthly.index.max().date()), omitted_edge_months=omitted,
                    mean_block_months=MEAN_BLOCK_MONTHS, seed=seed,
                    exposure_information=EXPOSURE_CAVEAT,
-                   costs="Já embutidos nos retornos líquidos; não cobrados novamente",
-                   interpretation="Cenários condicionais da amostra; não probabilidades futuras calibradas",
-                   sharpe="Retornos excedentes mensais em USD, anualizados por raiz de 12",
-                   drawdown="Somente fechamentos mensais; perdas intramês podem ser maiores",
+                   costs="Already included in net returns; not charged again",
+                   interpretation="Sample-conditional scenarios; not calibrated future probabilities",
+                   sharpe="Monthly USD excess returns, annualized by square root of 12",
+                   drawdown="Month-end observations only; intramonth losses may be larger",
                    strategies=summaries, comparisons=comparisons,
                    probability_sharpe_gain_point_one_over_both=float(joint.mean()),
                    limitations=[EXPOSURE_CAVEAT,
-                                "Replay do algoritmo observado, sem reotimizar dentro das trajetórias",
-                                f"Amostra curta repetida por {horizon_months/12:g} anos; não produz novos regimes",
-                                "Universo de sobreviventes e histórico já explorados",
-                                "BRL nominal; sem Sharpe BRL com referência de caixa em USD"])
+                                "Replay of the observed algorithm without within-path reoptimization",
+                                f"Short sample repeated over {horizon_months/12:g} years; does not create new regimes",
+                                "Survivor universe and previously explored history",
+                                "Nominal BRL; no BRL Sharpe using a USD cash benchmark"])
     _write(out / "mc_summary.json", summary)
     pd.DataFrame(percentiles).to_csv(out / "mc_percentiles.csv", index=False)
     pd.DataFrame(terminals).to_csv(out / "mc_terminal_samples.csv", index=False)
@@ -179,15 +179,15 @@ def paired(root=None, paths=PAIRED_PATHS, horizon_months=PAIRED_HORIZON_MONTHS,
     expected = 1-1/MEAN_BLOCK_MONTHS+1/(MEAN_BLOCK_MONTHS*n_obs)
     assert abs(continuation-expected) < .01
     _write(out / "mc_verification.json", dict(passed=True,
-        checks=["Composição geométrica mensal conferida independentemente",
-                "Índices idênticos para estratégias, caixa e câmbio",
-                "Seed reproduzível e frequência de continuação geométrica",
-                "Par idêntico produz métricas idênticas",
-                "Riqueza BRL equivale à riqueza USD vezes câmbio composto",
+        checks=["Monthly geometric compounding independently checked",
+                "Identical indices for strategies, cash and FX",
+                "Reproducible seed and geometric continuation frequency",
+                "Identical pairs produce identical metrics",
+                "BRL wealth equals USD wealth times compounded FX",
                 "Drawdown inclui o patrimônio inicial",
-                "Custos líquidos não são descontados em duplicidade"],
+                "Net costs are not deducted twice"],
         continuation_fraction=continuation, expected_continuation_fraction=expected))
-    print(f"MC v2 pareado: {paths:,} trajetórias × {horizon_months} meses; base {n_obs} meses.", flush=True)
+    print(f"Paired MC v2: {paths:,} paths × {horizon_months} months; sample {n_obs} months.", flush=True)
     return summary
 
 
@@ -266,7 +266,7 @@ def dynamic(root=None, paths=DYNAMIC_PATHS, test_months=DYNAMIC_TEST_MONTHS,
     _write(out/"mc_dynamic_rf_source.json",rf_source)
     A,b,labels=study.exposures.select(names)
     optimizers={"Long-short":Optimizer(names,A,b,labels,long_only=False),
-                "Somente comprado":Optimizer(names,A,b,labels,long_only=True)}
+                "Long only":Optimizer(names,A,b,labels,long_only=True)}
     values=observed.to_numpy()
     columns=list(observed.columns)
     ix=[columns.index(name) for name in names]
@@ -331,9 +331,9 @@ def dynamic(root=None, paths=DYNAMIC_PATHS, test_months=DYNAMIC_TEST_MONTHS,
                     max_violation=max(max_violation,diag["max_violation"])
                     if month and use_bands:
                         target=closest_band(account.weights,target,A,b,training,rfannual,
-                                             long_only=strategy=="Somente comprado")
+                                             long_only=strategy=="Long only")
                     tx=account.rebalance(target,c.TRANSACTION)
-                elif strategy=="Pesos iguais":
+                elif strategy=="Equal weight":
                     tx=account.rebalance(pd.Series(1/len(names),index=names),c.TRANSACTION)
                 elif month==0 or not len(account.holdings):
                     tx=account.rebalance(pd.Series({"VT":1.}),c.TRANSACTION)
@@ -386,27 +386,27 @@ def dynamic(root=None, paths=DYNAMIC_PATHS, test_months=DYNAMIC_TEST_MONTHS,
     sr=table.pivot(index="path",columns="strategy",values="sharpe")
     wealth=table.pivot(index="path",columns="strategy",values="terminal_wealth")
     comparisons=[]
-    for reference in ["Somente comprado","Pesos iguais","VT"]:
+    for reference in ["Long only","Equal weight","VT"]:
         delta=sr["Long-short"]-sr[reference]
         comparisons.append(dict(reference=reference,delta_sharpe=_q(delta),
                                 defined_sharpe_pairs=int(delta.notna().sum()),
                                 probability_terminal_above=float(np.mean(wealth["Long-short"]>wealth[reference])),
                                 probability_sharpe_above=float((delta>0).sum()/paths),
                                 probability_sharpe_gain_point_one=float((delta>=.1).sum()/paths)))
-    gate=((sr["Long-short"]-sr["Pesos iguais"]>=.1)&(sr["Long-short"]-sr.VT>=.1))
-    summary=dict(method="Walk-forward mensal em vetores sintéticos com reotimização long/short e comprada",
+    gate=((sr["Long-short"]-sr["Equal weight"]>=.1)&(sr["Long-short"]-sr.VT>=.1))
+    summary=dict(method="Monthly walk-forward on synthetic vectors with long/short and long-only reoptimization",
                  paths=paths,test_months=test_months,test_years=test_months/12,
                  burn_in_months=BURN_IN,mean_block_months=MEAN_BLOCK_MONTHS,seed=seed,
                  universe_date=str(signal.date()),assets=names,asset_count=len(names),
                  reservoir_first=str(observed.index.min().date()),reservoir_last=str(observed.index.max().date()),
                  reservoir_months=len(observed),optimizer_fits=refits,expected_fits_without_insolvency=paths*test_months*2,
-                 solver_failures=0,solver_failure_policy="A execução para se o solver falhar; nenhuma trajetória é descartada",
+                 solver_failures=0,solver_failure_policy="Execution stops on solver failure; no path is discarded",
                  max_target_constraint_violation=max_violation,margin_calls=margins,
                  minimum_risk_safeguard_fits=safeguard_fits,
                  exposure_information=EXPOSURE_CAVEAT,holdings_matrix_frozen=True,
                  holdings_sha256=exposure_hash,
                  historical_exposures_point_in_time=False,monthly_bands=use_bands,
-                 execution="Sinal após 60 retornos anteriores; execução antes do retorno sintético seguinte; aproximação mensal",
+                 execution="Signal follows 60 prior returns; execution precedes the next synthetic return; monthly approximation",
                  costs=dict(transaction=c.TRANSACTION,management=c.MANAGEMENT,borrow=c.BORROW,
                             financing_spread=c.FINANCING_SPREAD,collateral_multiplier=c.COLLATERAL_MULTIPLIER,
                             collateral_rebate=c.COLLATERAL_REBATE),
@@ -414,12 +414,12 @@ def dynamic(root=None, paths=DYNAMIC_PATHS, test_months=DYNAMIC_TEST_MONTHS,
                  probability_sharpe_gain_point_one_over_both=float(gate.mean()),
                  fingerprints=fingerprints,elapsed_seconds=time.monotonic()-started,
                  limitations=[EXPOSURE_CAVEAT,
-                              "Universo fixo de ETFs antigos, não a entrada futura de todos os 61 candidatos",
-                              "Aproximação mensal não mede perdas e chamadas de margem intramês",
-                              "Aluguel e financiamento são hipóteses, sem disponibilidade histórica comprovada de empréstimo",
-                              "Reservatório conhecido retrospectivamente, sem validação prospectiva",
-                              "Prejuízos/insolvências ficam registrados, sem substituir trajetórias; CAGR/Sharpe indefinidos são contados",
-                              "Frequências com 50 trajetórias têm erro Monte Carlo elevado; não são probabilidades futuras"])
+                              "Fixed universe of seasoned ETFs, without future admission of all 61 candidates",
+                              "Monthly approximation does not measure intramonth losses or margin calls",
+                              "Borrowing and financing are assumptions; historical borrow availability is unverified",
+                              "Retrospectively known reservoir without prospective validation",
+                              "Losses/insolvencies remain recorded without replacing paths; undefined CAGR/Sharpe values are counted",
+                              "Frequencies from 50 paths have substantial Monte Carlo error; they are not future probabilities"])
     for name,digest in fingerprints.items():
         if hashlib.sha256((root/"pipeline"/name).read_bytes()).hexdigest()!=digest:
             raise RuntimeError(f"{name} changed during simulation; rerun")
@@ -435,16 +435,16 @@ def dynamic(root=None, paths=DYNAMIC_PATHS, test_months=DYNAMIC_TEST_MONTHS,
     np.testing.assert_array_equal(draws[:,:20],stationary_indices(len(observed),paths,20,MEAN_BLOCK_MONTHS,seed))
     _write(out/"mc_dynamic_verification.json",dict(passed=True,paths=paths,optimizer_fits=refits,
         max_target_constraint_violation=max_violation,
-        checks=["60 retornos sintéticos anteriores a cada decisão",
-                "Mesmo vetor amostrado para ETFs, caixa e câmbio",
-                "Duas otimizações por mês: comprada/vendida e somente comprada",
-                "Contabilidade Account separa caixa, garantia e dívida",
-                "Custos de aluguel/financiamento cobrados sem duplicar distribuições",
-                "Matriz atual congelada explicitamente identificada como retrospectiva",
-                "Trajetórias insolventes não são removidas nem reiniciadas",
-                "Fontes do modelo e da conta não mudaram durante a execução",
-                "Seed e treinamento antes do período de manutenção conferidos"] ))
-    print(f"MC v2 dinâmico concluído: {paths} trajetórias, {refits} reotimizações em {summary['elapsed_seconds']:.1f}s.",flush=True)
+        checks=["60 synthetic returns precede each decision",
+                "The same vector is sampled for ETFs, cash and FX",
+                "Two optimizations per month: long/short and long only",
+                "Account separates cash, collateral and debt",
+                "Borrowing/financing costs charged without duplicating distributions",
+                "Current frozen matrix explicitly identified as retrospective",
+                "Insolvent paths are neither removed nor restarted",
+                "Model and accounting sources did not change during execution",
+                "Seed and training before the holding period verified"] ))
+    print(f"Dynamic MC v2 completed: {paths} paths, {refits} reoptimizations in {summary['elapsed_seconds']:.1f}s.",flush=True)
     return summary
 
 
