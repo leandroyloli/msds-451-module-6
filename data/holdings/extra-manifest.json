@@ -1,0 +1,167 @@
+[
+  {
+    "etf": "BOVA11",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.blackrock.com/br/products/251816/ishares-ibovespa-fundo-de-ndice-fund/1506433276998.ajax?fileType=csv&fileName=BOVA11_holdings&dataType=fund",
+    "file": "BOVA11-latest.csv",
+    "rows": 80
+  },
+  {
+    "etf": "PIBB11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "PIBB11-cvm-202609.csv",
+    "cnpj": "06.323.688/0001-27",
+    "rows": 101,
+    "underlying_note": ""
+  },
+  {
+    "etf": "SMAL11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "SMAL11-cvm-202609.csv",
+    "cnpj": "10.406.600/0001-08",
+    "rows": 212,
+    "underlying_note": ""
+  },
+  {
+    "etf": "GOVE11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "GOVE11-cvm-202609.csv",
+    "cnpj": "11.184.136/0001-15",
+    "rows": 265,
+    "underlying_note": ""
+  },
+  {
+    "etf": "BRAX11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "BRAX11-cvm-202609.csv",
+    "cnpj": "11.455.378/0001-04",
+    "rows": 104,
+    "underlying_note": ""
+  },
+  {
+    "etf": "FIND11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "FIND11-cvm-202609.csv",
+    "cnpj": "11.961.094/0001-81",
+    "rows": 43,
+    "underlying_note": ""
+  },
+  {
+    "etf": "DIVO11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "DIVO11-cvm-202609.csv",
+    "cnpj": "13.416.245/0001-46",
+    "rows": 106,
+    "underlying_note": ""
+  },
+  {
+    "etf": "BBSD11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "BBSD11-cvm-202609.csv",
+    "cnpj": "17.817.528/0001-50",
+    "rows": 59,
+    "underlying_note": ""
+  },
+  {
+    "etf": "IVVB11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "IVVB11-cvm-202609.csv",
+    "cnpj": "19.909.560/0001-91",
+    "rows": 509,
+    "underlying_note": "Feeder expansion uses current underlying snapshot; mixed dates, not historical certification"
+  },
+  {
+    "etf": "BOVV11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "BOVV11-cvm-202609.csv",
+    "cnpj": "21.407.758/0001-19",
+    "rows": 156,
+    "underlying_note": ""
+  },
+  {
+    "etf": "BBOV11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "BBOV11-cvm-202609.csv",
+    "cnpj": "34.606.480/0001-50",
+    "rows": 183,
+    "underlying_note": ""
+  },
+  {
+    "etf": "NASD11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "NASD11-cvm-202609.csv",
+    "cnpj": "35.578.672/0001-63",
+    "rows": 13,
+    "underlying_note": ""
+  },
+  {
+    "etf": "WRLD11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "WRLD11-cvm-202609.csv",
+    "cnpj": "42.280.262/0001-05",
+    "rows": 10298,
+    "underlying_note": "Feeder expansion uses current underlying snapshot; mixed dates, not historical certification"
+  },
+  {
+    "etf": "AUVP11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "AUVP11-cvm-202609.csv",
+    "cnpj": "61.273.759/0001-32",
+    "rows": 62,
+    "underlying_note": ""
+  },
+  {
+    "etf": "VWRA11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "VWRA11-cvm-202609.csv",
+    "cnpj": "61.689.798/0001-15",
+    "rows": 5,
+    "underlying_note": ""
+  },
+  {
+    "etf": "BEST11",
+    "status": "complete_regulator",
+    "as_of": "2026-09-30",
+    "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+    "file": "BEST11-cvm-202609.csv",
+    "cnpj": "61.950.414/0001-76",
+    "rows": 41,
+    "underlying_note": ""
+  },
+  {
+    "etf": "SPY",
+    "status": "complete_issuer",
+    "as_of": "2026-10-29",
+    "source_url": "https://www.ssga.com/us/en/individual/etfs/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spy.xlsx",
+    "file": "SPY.xlsx"
+  }
+]

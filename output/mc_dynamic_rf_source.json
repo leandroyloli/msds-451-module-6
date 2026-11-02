@@ -1,0 +1,6 @@
+{
+  "source": "FRED DGS3MO archive inherited from the first study",
+  "path": "data\\dynamic_rf_source.csv",
+  "sha256": "c984e53900a0baec7747886b03913e5792feebd996c90357dd380ee5964d80e2",
+  "convention": "Last yield observed before source month /100 /12; approximate cash return"
+}

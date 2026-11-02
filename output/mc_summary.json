@@ -1,0 +1,311 @@
+{
+  "method": "Bootstrap estacionário pareado do processo líquido mensal",
+  "paths": 10000,
+  "horizon_months": 300,
+  "horizon_years": 25.0,
+  "historical_months": 87,
+  "first_month": "2019-07-31",
+  "last_month": "2026-09-30",
+  "omitted_edge_months": [],
+  "mean_block_months": 6.0,
+  "seed": 451063,
+  "exposure_information": "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
+  "costs": "Já embutidos nos retornos líquidos; não cobrados novamente",
+  "interpretation": "Cenários condicionais da amostra; não probabilidades futuras calibradas",
+  "sharpe": "Retornos excedentes mensais em USD, anualizados por raiz de 12",
+  "drawdown": "Somente fechamentos mensais; perdas intramês podem ser maiores",
+  "strategies": [
+    {
+      "strategy": "Long-short",
+      "currency": "USD",
+      "terminal_wealth": {
+        "p05": 5.983689236957207,
+        "p50": 17.430067896072785,
+        "p95": 47.07180020594731,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.07418420168472895,
+        "p50": 0.12111964634661926,
+        "p95": 0.16656900201651373,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.4267868474326973,
+        "p50": -0.2891400768668248,
+        "p95": -0.20858663058321067,
+        "defined_paths": 10000
+      },
+      "sharpe": {
+        "p05": 0.3605906504545951,
+        "p50": 0.650677712295366,
+        "p95": 0.958118786087304,
+        "defined_paths": 10000
+      },
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.4459,
+      "probability_drawdown_below_minus_50": 0.0101
+    },
+    {
+      "strategy": "Long-short",
+      "currency": "BRL",
+      "terminal_wealth": {
+        "p05": 11.722981727608365,
+        "p50": 49.29014478787593,
+        "p95": 191.76183399451932,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.10347252308351347,
+        "p50": 0.16871980188980906,
+        "p95": 0.23398672049208002,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.4545397811944674,
+        "p50": -0.28945099938468566,
+        "p95": -0.18774076334416215,
+        "defined_paths": 10000
+      },
+      "sharpe": null,
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.4325,
+      "probability_drawdown_below_minus_50": 0.0198
+    },
+    {
+      "strategy": "Somente comprado",
+      "currency": "USD",
+      "terminal_wealth": {
+        "p05": 6.058457855235578,
+        "p50": 17.724542101162008,
+        "p95": 47.79937476930449,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.07471790186108258,
+        "p50": 0.1218712037263403,
+        "p95": 0.16728495639352206,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.42613493262335217,
+        "p50": -0.2889170645858473,
+        "p95": -0.20898625976962026,
+        "defined_paths": 10000
+      },
+      "sharpe": {
+        "p05": 0.36441121222852274,
+        "p50": 0.6554747564508767,
+        "p95": 0.9647507567679611,
+        "defined_paths": 10000
+      },
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.4442,
+      "probability_drawdown_below_minus_50": 0.0103
+    },
+    {
+      "strategy": "Somente comprado",
+      "currency": "BRL",
+      "terminal_wealth": {
+        "p05": 11.861513764123949,
+        "p50": 49.991251479548154,
+        "p95": 195.68197456995412,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.1039911811675361,
+        "p50": 0.16938026440054316,
+        "p95": 0.2349859956648938,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.4543757949183918,
+        "p50": -0.289475351847847,
+        "p95": -0.18762655926477834,
+        "defined_paths": 10000
+      },
+      "sharpe": null,
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.4329,
+      "probability_drawdown_below_minus_50": 0.0201
+    },
+    {
+      "strategy": "Pesos iguais",
+      "currency": "USD",
+      "terminal_wealth": {
+        "p05": 5.827543774318971,
+        "p50": 17.72714950324991,
+        "p95": 50.82607837444908,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.07304867002233818,
+        "p50": 0.12187780544932175,
+        "p95": 0.17015519001943258,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.4519004213676956,
+        "p50": -0.3054592795280128,
+        "p95": -0.2565472150448703,
+        "defined_paths": 10000
+      },
+      "sharpe": {
+        "p05": 0.3385262744334213,
+        "p50": 0.6214410396839296,
+        "p95": 0.924408029803039,
+        "defined_paths": 10000
+      },
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.5307,
+      "probability_drawdown_below_minus_50": 0.017
+    },
+    {
+      "strategy": "Pesos iguais",
+      "currency": "BRL",
+      "terminal_wealth": {
+        "p05": 13.445847354266798,
+        "p50": 50.13367744694165,
+        "p95": 169.85449413598775,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.10954143424028778,
+        "p50": 0.16951334681120298,
+        "p95": 0.22801333107368998,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.39213971405304526,
+        "p50": -0.24959882491274044,
+        "p95": -0.16485681966208124,
+        "defined_paths": 10000
+      },
+      "sharpe": null,
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.2406,
+      "probability_drawdown_below_minus_50": 0.0031
+    },
+    {
+      "strategy": "VT",
+      "currency": "USD",
+      "terminal_wealth": {
+        "p05": 6.630672956274113,
+        "p50": 20.929463639799792,
+        "p95": 60.276512701919756,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.07860468956697417,
+        "p50": 0.129354596827881,
+        "p95": 0.17816447849422906,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.44396624569737236,
+        "p50": -0.300915588078436,
+        "p95": -0.22152496676153846,
+        "defined_paths": 10000
+      },
+      "sharpe": {
+        "p05": 0.3756791223917289,
+        "p50": 0.6707168784290074,
+        "p95": 0.9804805112425331,
+        "defined_paths": 10000
+      },
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.5051,
+      "probability_drawdown_below_minus_50": 0.0154
+    },
+    {
+      "strategy": "VT",
+      "currency": "BRL",
+      "terminal_wealth": {
+        "p05": 13.746033700060242,
+        "p50": 58.89380275279886,
+        "p95": 230.9927473982466,
+        "defined_paths": 10000
+      },
+      "cagr": {
+        "p05": 0.11052181974028158,
+        "p50": 0.17707133578695672,
+        "p95": 0.24320839399736013,
+        "defined_paths": 10000
+      },
+      "max_drawdown": {
+        "p05": -0.45486671509992516,
+        "p50": -0.29045266548775234,
+        "p95": -0.19257963827781435,
+        "defined_paths": 10000
+      },
+      "sharpe": null,
+      "probability_terminal_below_initial": 0.0,
+      "probability_drawdown_below_minus_30": 0.4449,
+      "probability_drawdown_below_minus_50": 0.0205
+    }
+  ],
+  "comparisons": [
+    {
+      "reference": "Somente comprado",
+      "delta_sharpe": {
+        "p05": -0.009453814975973269,
+        "p50": -0.005228358819204304,
+        "p95": -0.001144422078108601,
+        "defined_paths": 10000
+      },
+      "delta_cagr": {
+        "p05": -0.0013871516092123274,
+        "p50": -0.0007180290025264741,
+        "p95": -4.058478741478538e-05,
+        "defined_paths": 10000
+      },
+      "probability_sharpe_above": 0.0178,
+      "probability_sharpe_gain_point_one": 0.0,
+      "probability_terminal_above": 0.0413
+    },
+    {
+      "reference": "Pesos iguais",
+      "delta_sharpe": {
+        "p05": -0.04751549730549705,
+        "p50": 0.028534054113931784,
+        "p95": 0.09946090458099331,
+        "defined_paths": 10000
+      },
+      "delta_cagr": {
+        "p05": -0.012208518970605955,
+        "p50": -0.0008120572767497392,
+        "p95": 0.010477129435005844,
+        "defined_paths": 10000
+      },
+      "probability_sharpe_above": 0.7351,
+      "probability_sharpe_gain_point_one": 0.0486,
+      "probability_terminal_above": 0.4495
+    },
+    {
+      "reference": "VT",
+      "delta_sharpe": {
+        "p05": -0.0616819577335411,
+        "p50": -0.019582146245130883,
+        "p95": 0.02092546538826527,
+        "defined_paths": 10000
+      },
+      "delta_cagr": {
+        "p05": -0.016223691453485803,
+        "p50": -0.008006132332598753,
+        "p95": -0.0005417194031923179,
+        "defined_paths": 10000
+      },
+      "probability_sharpe_above": 0.2104,
+      "probability_sharpe_gain_point_one": 0.0,
+      "probability_terminal_above": 0.0399
+    }
+  ],
+  "probability_sharpe_gain_point_one_over_both": 0.0,
+  "limitations": [
+    "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
+    "Replay do algoritmo observado, sem reotimizar dentro das trajetórias",
+    "Amostra curta repetida por 25 anos; não produz novos regimes",
+    "Universo de sobreviventes e histórico já explorados",
+    "BRL nominal; sem Sharpe BRL com referência de caixa em USD"
+  ]
+}

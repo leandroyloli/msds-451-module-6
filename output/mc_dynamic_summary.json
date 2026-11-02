@@ -1,0 +1,418 @@
+{
+  "method": "Walk-forward mensal em vetores sintéticos com reotimização long/short e comprada",
+  "paths": 50,
+  "test_months": 60,
+  "test_years": 5.0,
+  "burn_in_months": 60,
+  "mean_block_months": 6.0,
+  "seed": 451064,
+  "universe_date": "2019-06-30",
+  "assets": [
+    "VOO",
+    "VTI",
+    "VT",
+    "VUG",
+    "VTV",
+    "VB",
+    "VYM",
+    "VIG",
+    "DGRO",
+    "DVY",
+    "QUAL",
+    "VOOG",
+    "VXUS",
+    "VEA",
+    "VWO",
+    "IEMG",
+    "VBR",
+    "MTUM",
+    "USMV",
+    "IWDA",
+    "EIMI",
+    "CNDX",
+    "BOVA11",
+    "PIBB11",
+    "SMAL11"
+  ],
+  "asset_count": 25,
+  "reservoir_first": "2014-07-31",
+  "reservoir_last": "2026-09-30",
+  "reservoir_months": 147,
+  "optimizer_fits": 6000,
+  "expected_fits_without_insolvency": 6000,
+  "solver_failures": 0,
+  "solver_failure_policy": "A execução para se o solver falhar; nenhuma trajetória é descartada",
+  "max_target_constraint_violation": 4.661061869803973e-09,
+  "margin_calls": 0,
+  "minimum_risk_safeguard_fits": 244,
+  "exposure_information": "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
+  "holdings_matrix_frozen": true,
+  "holdings_sha256": "31793c33e773eb75c1c11bd487c68705c2fd3d2a0a6fd5c98335804fcc5c1532",
+  "historical_exposures_point_in_time": false,
+  "monthly_bands": true,
+  "execution": "Sinal após 60 retornos anteriores; execução antes do retorno sintético seguinte; aproximação mensal",
+  "costs": {
+    "transaction": 0.001,
+    "management": 0.0025,
+    "borrow": 0.02,
+    "financing_spread": 0.01,
+    "collateral_multiplier": 1.0,
+    "collateral_rebate": 0.0
+  },
+  "probabilities_are_forecasts": false,
+  "strategies": [
+    {
+      "strategy": "Long-short",
+      "paths": 50,
+      "insolvent_paths": 0,
+      "margin_calls": 0,
+      "probability_terminal_below_initial": 0.04,
+      "terminal_wealth": {
+        "p05": 1.1116726655464617,
+        "p50": 1.6114572696670089,
+        "p95": 2.964751973702447,
+        "defined_paths": 50
+      },
+      "cagr": {
+        "p05": 0.02125107566864444,
+        "p50": 0.10012474037975849,
+        "p95": 0.2427359401495505,
+        "defined_paths": 50
+      },
+      "sharpe": {
+        "p05": 0.09353662094161025,
+        "p50": 0.6007147713268539,
+        "p95": 1.527818368475928,
+        "defined_paths": 50
+      },
+      "volatility": {
+        "p05": 0.1116116358647866,
+        "p50": 0.13701070056046277,
+        "p95": 0.1698238417804912,
+        "defined_paths": 50
+      },
+      "max_drawdown": {
+        "p05": -0.29004776696265866,
+        "p50": -0.18001745441176464,
+        "p95": -0.0865048082141415,
+        "defined_paths": 50
+      },
+      "annual_sales_turnover": {
+        "p05": 0.04644206721133521,
+        "p50": 0.10488014473761895,
+        "p95": 0.3496034239861686,
+        "defined_paths": 50
+      },
+      "paid_trading": {
+        "p05": 0.0016308222323556092,
+        "p50": 0.002496287116720828,
+        "p95": 0.00476796924491942,
+        "defined_paths": 50
+      },
+      "paid_borrow": {
+        "p05": 0.00015902572513750864,
+        "p50": 0.002611771701370106,
+        "p95": 0.008103473952946354,
+        "defined_paths": 50
+      },
+      "paid_financing": {
+        "p05": 0.00023602786224601966,
+        "p50": 0.003973001440869637,
+        "p95": 0.010186201405749476,
+        "defined_paths": 50
+      },
+      "paid_management": {
+        "p05": 0.012974957060875876,
+        "p50": 0.016323057670569574,
+        "p95": 0.02348882568005071,
+        "defined_paths": 50
+      },
+      "terminal_wealth_brl": {
+        "p05": 1.530111861881926,
+        "p50": 2.3480767380231504,
+        "p95": 3.9558240312560393,
+        "defined_paths": 50
+      }
+    },
+    {
+      "strategy": "Somente comprado",
+      "paths": 50,
+      "insolvent_paths": 0,
+      "margin_calls": 0,
+      "probability_terminal_below_initial": 0.04,
+      "terminal_wealth": {
+        "p05": 1.1185999572186678,
+        "p50": 1.5988611169592652,
+        "p95": 2.967241986113569,
+        "defined_paths": 50
+      },
+      "cagr": {
+        "p05": 0.022545735632249788,
+        "p50": 0.0983975626321636,
+        "p95": 0.24289260591635645,
+        "defined_paths": 50
+      },
+      "sharpe": {
+        "p05": 0.10173673180953942,
+        "p50": 0.5872325662977497,
+        "p95": 1.5384716034854606,
+        "defined_paths": 50
+      },
+      "volatility": {
+        "p05": 0.11157581521045919,
+        "p50": 0.1400926451000088,
+        "p95": 0.1710890878669797,
+        "defined_paths": 50
+      },
+      "max_drawdown": {
+        "p05": -0.29366087296265436,
+        "p50": -0.18015541638131943,
+        "p95": -0.08827632030704216,
+        "defined_paths": 50
+      },
+      "annual_sales_turnover": {
+        "p05": 0.031253337392900545,
+        "p50": 0.09111316104339866,
+        "p95": 0.3133143865307906,
+        "defined_paths": 50
+      },
+      "paid_trading": {
+        "p05": 0.0013674313854908176,
+        "p50": 0.002195359264928169,
+        "p95": 0.004343980091325371,
+        "defined_paths": 50
+      },
+      "paid_borrow": {
+        "p05": 0.0,
+        "p50": 1.4116721287120156e-12,
+        "p95": 3.615750170409783e-11,
+        "defined_paths": 50
+      },
+      "paid_financing": {
+        "p05": 0.0,
+        "p50": 2.2772610987954955e-12,
+        "p95": 6.02972213022947e-11,
+        "defined_paths": 50
+      },
+      "paid_management": {
+        "p05": 0.013142672587512495,
+        "p50": 0.01632573581586174,
+        "p95": 0.023524735532795653,
+        "defined_paths": 50
+      },
+      "terminal_wealth_brl": {
+        "p05": 1.5490000445644792,
+        "p50": 2.374973675112969,
+        "p95": 3.921264756994951,
+        "defined_paths": 50
+      }
+    },
+    {
+      "strategy": "Pesos iguais",
+      "paths": 50,
+      "insolvent_paths": 0,
+      "margin_calls": 0,
+      "probability_terminal_below_initial": 0.06,
+      "terminal_wealth": {
+        "p05": 1.0495217470681137,
+        "p50": 1.4987867440365932,
+        "p95": 3.1166669777798846,
+        "defined_paths": 50
+      },
+      "cagr": {
+        "p05": 0.009344591301327004,
+        "p50": 0.08429602553242765,
+        "p95": 0.25526661671727335,
+        "defined_paths": 50
+      },
+      "sharpe": {
+        "p05": 0.028334290700968663,
+        "p50": 0.4881856033188899,
+        "p95": 1.4595035314860039,
+        "defined_paths": 50
+      },
+      "volatility": {
+        "p05": 0.118636967000995,
+        "p50": 0.15139813263401897,
+        "p95": 0.17500240067102826,
+        "defined_paths": 50
+      },
+      "max_drawdown": {
+        "p05": -0.29268323405537183,
+        "p50": -0.21445731291676823,
+        "p95": -0.10135822468093386,
+        "defined_paths": 50
+      },
+      "annual_sales_turnover": {
+        "p05": 0.11769780353730132,
+        "p50": 0.13471280144899633,
+        "p95": 0.14338270223167615,
+        "defined_paths": 50
+      },
+      "paid_trading": {
+        "p05": 0.002342504758900953,
+        "p50": 0.002646258882464071,
+        "p95": 0.003299679230354013,
+        "defined_paths": 50
+      },
+      "paid_borrow": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "paid_financing": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "paid_management": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "terminal_wealth_brl": {
+        "p05": 1.441279228758109,
+        "p50": 2.2670445967879185,
+        "p95": 4.103315654996239,
+        "defined_paths": 50
+      }
+    },
+    {
+      "strategy": "VT",
+      "paths": 50,
+      "insolvent_paths": 0,
+      "margin_calls": 0,
+      "probability_terminal_below_initial": 0.06,
+      "terminal_wealth": {
+        "p05": 1.0153299249210626,
+        "p50": 1.5717555853980443,
+        "p95": 3.29820103153379,
+        "defined_paths": 50
+      },
+      "cagr": {
+        "p05": 0.002804760340520872,
+        "p50": 0.0946528940597815,
+        "p95": 0.2695539645943666,
+        "defined_paths": 50
+      },
+      "sharpe": {
+        "p05": -0.012280168510185138,
+        "p50": 0.4829984459210749,
+        "p95": 1.6140034230068219,
+        "defined_paths": 50
+      },
+      "volatility": {
+        "p05": 0.11711658114510425,
+        "p50": 0.14429577093934132,
+        "p95": 0.1717405818750472,
+        "defined_paths": 50
+      },
+      "max_drawdown": {
+        "p05": -0.33101985729907335,
+        "p50": -0.21217739170080996,
+        "p95": -0.09688639240941456,
+        "defined_paths": 50
+      },
+      "annual_sales_turnover": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "paid_trading": {
+        "p05": 0.000999000999000999,
+        "p50": 0.000999000999000999,
+        "p95": 0.000999000999000999,
+        "defined_paths": 50
+      },
+      "paid_borrow": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "paid_financing": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "paid_management": {
+        "p05": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "defined_paths": 50
+      },
+      "terminal_wealth_brl": {
+        "p05": 1.2605306376573255,
+        "p50": 2.3063052052404256,
+        "p95": 4.398501506499957,
+        "defined_paths": 50
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "reference": "Somente comprado",
+      "delta_sharpe": {
+        "p05": -0.04887055187440961,
+        "p50": -0.0007785661329627325,
+        "p95": 0.059201311689986366,
+        "defined_paths": 50
+      },
+      "defined_sharpe_pairs": 50,
+      "probability_terminal_above": 0.4,
+      "probability_sharpe_above": 0.46,
+      "probability_sharpe_gain_point_one": 0.02
+    },
+    {
+      "reference": "Pesos iguais",
+      "delta_sharpe": {
+        "p05": -0.0862994981703618,
+        "p50": 0.06780925883129228,
+        "p95": 0.2421048150898046,
+        "defined_paths": 50
+      },
+      "defined_sharpe_pairs": 50,
+      "probability_terminal_above": 0.58,
+      "probability_sharpe_above": 0.74,
+      "probability_sharpe_gain_point_one": 0.42
+    },
+    {
+      "reference": "VT",
+      "delta_sharpe": {
+        "p05": -0.12269724738017909,
+        "p50": 0.07565586948078762,
+        "p95": 0.2571122791096808,
+        "defined_paths": 50
+      },
+      "defined_sharpe_pairs": 50,
+      "probability_terminal_above": 0.64,
+      "probability_sharpe_above": 0.72,
+      "probability_sharpe_gain_point_one": 0.38
+    }
+  ],
+  "probability_sharpe_gain_point_one_over_both": 0.28,
+  "fingerprints": {
+    "model_v2.py": "78d204cc4ef508d44431d9f85223e768a58ebab84adb9cb3669a385f6b10ac4d",
+    "execution_v2.py": "aec53b93ddeb59cd7d293163c24753796226aa0c6f03f8dd5784d860071a1c69",
+    "config_v2.py": "38e78a95eb1bfaca91d0f6a6641fee33b884c36d3010fbe7f6b446408d0fdc2e",
+    "study_v2.py": "53c499341fdd16abb3e0f95d9cfdfd05da529c5f2cf1d00ba26c734df806e7f6",
+    "data.py": "a8044486be3e7778e2f3efe897ed5bfbcbc81fb0d1695bc86d37019cde1c4c3e",
+    "eligibility.py": "1d2e4b2f308ca368a9c84fa01ab54dc7caa0273faa3e58591b7334dbe4f78ad6",
+    "utilities.py": "72f42fc937197d0ce7e3829c2a29d47d627431ae6c6c0c62928c96abee9da034"
+  },
+  "elapsed_seconds": 300.5929999999935,
+  "limitations": [
+    "Composição atual dos ETFs congelada: os cenários são retrospectivos e não validam causalmente os limites por empresa/setor/país/moeda no passado.",
+    "Universo fixo de ETFs antigos, não a entrada futura de todos os 61 candidatos",
+    "Aproximação mensal não mede perdas e chamadas de margem intramês",
+    "Aluguel e financiamento são hipóteses, sem disponibilidade histórica comprovada de empréstimo",
+    "Reservatório conhecido retrospectivamente, sem validação prospectiva",
+    "Prejuízos/insolvências ficam registrados, sem substituir trajetórias; CAGR/Sharpe indefinidos são contados",
+    "Frequências com 50 trajetórias têm erro Monte Carlo elevado; não são probabilidades futuras"
+  ]
+}

@@ -1,0 +1,377 @@
+{
+  "retrieved_utc": "2026-11-01T18:20:10.362618+00:00",
+  "origin": "Yahoo Finance via yfinance; separate volume refresh, no replacement of price snapshot",
+  "sources": [
+    {
+      "ticker": "VTI",
+      "rows": 6377,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VOO",
+      "rows": 4056,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "IVV",
+      "rows": 6647,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "SPY",
+      "rows": 6743,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "ITOT",
+      "rows": 5725,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VT",
+      "rows": 4611,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VUG",
+      "rows": 5720,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "QQQ",
+      "rows": 6743,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VTV",
+      "rows": 5720,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "SCHD",
+      "rows": 3774,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VB",
+      "rows": 5720,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VIG",
+      "rows": 5153,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "DGRO",
+      "rows": 3111,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VYM",
+      "rows": 5014,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "QUAL",
+      "rows": 3338,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "DVY",
+      "rows": 5776,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "SPHQ",
+      "rows": 5253,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "JQUA",
+      "rows": 2250,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VXUS",
+      "rows": 3958,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VOOG",
+      "rows": 4056,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VEA",
+      "rows": 4843,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VWO",
+      "rows": 5441,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "IEMG",
+      "rows": 3519,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VBR",
+      "rows": 5720,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "AVUV",
+      "rows": 1779,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "MTUM",
+      "rows": 3401,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VWRA",
+      "rows": 1833,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "IWDA",
+      "rows": 4315,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VWRD",
+      "rows": 3644,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "ISAC",
+      "rows": 3791,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VHVE",
+      "rows": 1789,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "USMV",
+      "rows": 3774,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "CSPX",
+      "rows": 4068,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "EIMI",
+      "rows": 3136,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VUAA",
+      "rows": 1882,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VUSA",
+      "rows": 3643,
+      "status": "available",
+      "reported_currency": "GBP"
+    },
+    {
+      "ticker": "IWQU",
+      "rows": 3046,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "CNDX",
+      "rows": 4063,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VHYA",
+      "rows": 1789,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "VHYL",
+      "rows": 3393,
+      "status": "available",
+      "reported_currency": "GBP"
+    },
+    {
+      "ticker": "WSML",
+      "rows": 2167,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "IWMO",
+      "rows": 3046,
+      "status": "available",
+      "reported_currency": "USD"
+    },
+    {
+      "ticker": "ZPRV",
+      "rows": 2967,
+      "status": "available",
+      "reported_currency": "EUR"
+    },
+    {
+      "ticker": "AVWS",
+      "rows": 512,
+      "status": "available",
+      "reported_currency": "EUR"
+    },
+    {
+      "ticker": "BOVA11",
+      "rows": 4445,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "BBOV11",
+      "rows": 1501,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "BOVV11",
+      "rows": 2550,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "PIBB11",
+      "rows": 4674,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "DIVO11",
+      "rows": 3661,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "BRAX11",
+      "rows": 4144,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "AUVP11",
+      "rows": 271,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "SMAL11",
+      "rows": 4445,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "BBSD11",
+      "rows": 2959,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "BEST11",
+      "rows": 247,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "GOVE11",
+      "rows": 3565,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "FIND11",
+      "rows": 3869,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "IVVB11",
+      "rows": 3108,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "NASD11",
+      "rows": 1353,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "WRLD11",
+      "rows": 1251,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "ACWI11",
+      "rows": 1430,
+      "status": "available",
+      "reported_currency": "BRL"
+    },
+    {
+      "ticker": "VWRA11",
+      "rows": 266,
+      "status": "available",
+      "reported_currency": "BRL"
+    }
+  ],
+  "hashes": {
+    "daily_liquidity.csv": "d1e387e17d32e987d6fe11b4ece085f9814b44252d2c4d34bbfcdfb866635c18",
+    "liquidity_monthly.csv": "939f1bc5ccd8fb9296af2e4c0928a619dc7130d73f52ebfadf8ffb9673da8312",
+    "price_gaps_over_7days.csv": "5e607993cbc5b00334e1dca6382b20a0f52fd786eb9f533f96f1fb5fb53c6066"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "passed": true,
+  "official_root": "C:\\studing\\msds-451-module-6",
+  "archived_origin": "C:\\studing\\msds-451-module-6-temp",
+  "input_hash_checks": 84,
+  "csv_reproduction_matches": 19,
+  "comparisons": [
+    {
+      "file": "accounting.csv",
+      "origin_sha256": "ab315938ace871e998802379afcdb74efe7c73c3e49f8c2f8ace750c3d06cadc",
+      "current_sha256": "ab315938ace871e998802379afcdb74efe7c73c3e49f8c2f8ace750c3d06cadc",
+      "identical": true
+    },
+    {
+      "file": "allocation.csv",
+      "origin_sha256": "547b3b78752f2a4dfb552e627b8c254240bb767d4c90d7a77ff2f5d9d9dd8885",
+      "current_sha256": "547b3b78752f2a4dfb552e627b8c254240bb767d4c90d7a77ff2f5d9d9dd8885",
+      "identical": true
+    },
+    {
+      "file": "daily_returns.csv",
+      "origin_sha256": "45f14264c31e7d82ecac7d8352422bdec43cc451cd864c2ebddc2f6a8eb4e73e",
+      "current_sha256": "45f14264c31e7d82ecac7d8352422bdec43cc451cd864c2ebddc2f6a8eb4e73e",
+      "identical": true
+    },
+    {
+      "file": "limits.csv",
+      "origin_sha256": "c2a6b3a9b8a1606308351b47176b72c6ab6618f8e7f6d1f540ce371cefcd50b7",
+      "current_sha256": "c2a6b3a9b8a1606308351b47176b72c6ab6618f8e7f6d1f540ce371cefcd50b7",
+      "identical": true
+    },
+    {
+      "file": "lookthrough.csv",
+      "origin_sha256": "7f299c173a9690cbba5426cca035a9b6378d40ad64920b505eef1675d7b7c257",
+      "current_sha256": "7f299c173a9690cbba5426cca035a9b6378d40ad64920b505eef1675d7b7c257",
+      "identical": true
+    },
+    {
+      "file": "mc_dynamic_paths.csv",
+      "origin_sha256": "d90baeda99a25558cce31eeecfeb69fd7fe6dd171c444977275207c69eb7877a",
+      "current_sha256": "d90baeda99a25558cce31eeecfeb69fd7fe6dd171c444977275207c69eb7877a",
+      "identical": true
+    },
+    {
+      "file": "mc_dynamic_reservoir.csv",
+      "origin_sha256": "3a1d4bf2e05cb0449d70210112741f65f77b5a5178fd6f5c5c273e23a9542e40",
+      "current_sha256": "3a1d4bf2e05cb0449d70210112741f65f77b5a5178fd6f5c5c273e23a9542e40",
+      "identical": true
+    },
+    {
+      "file": "mc_dynamic_trace.csv",
+      "origin_sha256": "03bd7ca77ea132ec0d8ded3ca881669c33d19dcf973e46ff179f72c00300b236",
+      "current_sha256": "03bd7ca77ea132ec0d8ded3ca881669c33d19dcf973e46ff179f72c00300b236",
+      "identical": true
+    },
+    {
+      "file": "mc_intervals.csv",
+      "origin_sha256": "a8c32db23778b7e87726c603435f09ab9fb5ff31a440fbbb4fb0977e5cad6cd8",
+      "current_sha256": "a8c32db23778b7e87726c603435f09ab9fb5ff31a440fbbb4fb0977e5cad6cd8",
+      "identical": true
+    },
+    {
+      "file": "mc_monthly_returns.csv",
+      "origin_sha256": "3a8dddd4bddb807516c239aedb12975fc4256ba484c34c9ecb96dc34a6eebd83",
+      "current_sha256": "3a8dddd4bddb807516c239aedb12975fc4256ba484c34c9ecb96dc34a6eebd83",
+      "identical": true
+    },
+    {
+      "file": "mc_percentiles.csv",
+      "origin_sha256": "e60023b293d1a8802aa81056bd10ea2e08ba37c5facd770bd1c4fd9f30bf37d7",
+      "current_sha256": "e60023b293d1a8802aa81056bd10ea2e08ba37c5facd770bd1c4fd9f30bf37d7",
+      "identical": true
+    },
+    {
+      "file": "mc_terminal_samples.csv",
+      "origin_sha256": "548f2e8d8d2cd0b64910825113e600d9cb83bb32e10ee12a4924e5517c713da8",
+      "current_sha256": "548f2e8d8d2cd0b64910825113e600d9cb83bb32e10ee12a4924e5517c713da8",
+      "identical": true
+    },
+    {
+      "file": "metrics.csv",
+      "origin_sha256": "1bf1f239f06142227c59a7d1464dfd304c870eb61548cc30c42df1422ab202c0",
+      "current_sha256": "1bf1f239f06142227c59a7d1464dfd304c870eb61548cc30c42df1422ab202c0",
+      "identical": true
+    },
+    {
+      "file": "metrics_brl.csv",
+      "origin_sha256": "c48e3a8c74edfe85e09910e297d4b7b7adb168991c9bfdbbb376319a808fa39c",
+      "current_sha256": "c48e3a8c74edfe85e09910e297d4b7b7adb168991c9bfdbbb376319a808fa39c",
+      "identical": true
+    },
+    {
+      "file": "temporal_control_accounting.csv",
+      "origin_sha256": "031e677d8926ae1819dc566beb28ef6a5ff1bc8c9a076d0a987d387144d82c42",
+      "current_sha256": "031e677d8926ae1819dc566beb28ef6a5ff1bc8c9a076d0a987d387144d82c42",
+      "identical": true
+    },
+    {
+      "file": "temporal_control_trades.csv",
+      "origin_sha256": "009e15de58537afcbab01b2cc3588e2e6cd682c6c99b2d968371d36281fc3dcc",
+      "current_sha256": "009e15de58537afcbab01b2cc3588e2e6cd682c6c99b2d968371d36281fc3dcc",
+      "identical": true
+    },
+    {
+      "file": "temporal_control_weights.csv",
+      "origin_sha256": "7cd681692c39f095a472bba32565205f346b197b5b27255d57f544aa32e34253",
+      "current_sha256": "7cd681692c39f095a472bba32565205f346b197b5b27255d57f544aa32e34253",
+      "identical": true
+    },
+    {
+      "file": "trades.csv",
+      "origin_sha256": "ca836106e69e571b17d097a6fe8499db686d8580e62eff1c425b6a2e1eac5655",
+      "current_sha256": "ca836106e69e571b17d097a6fe8499db686d8580e62eff1c425b6a2e1eac5655",
+      "identical": true
+    },
+    {
+      "file": "weights.csv",
+      "origin_sha256": "86c6f055c5f804e6cb8ac2c7fa232818a631e4dfbeb53df4180e6a056db47d3f",
+      "current_sha256": "86c6f055c5f804e6cb8ac2c7fa232818a631e4dfbeb53df4180e6a056db47d3f",
+      "identical": true
+    }
+  ],
+  "git_initialized": false
+}

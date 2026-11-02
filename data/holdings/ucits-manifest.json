@@ -1,0 +1,74 @@
+[
+  {
+    "etf": "IWDA",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf/latest-holdings.csv",
+    "file": "IWDA-latest.csv",
+    "sha256": "beac4685a002937ef154666c83d8ef734119381bed9031232cbad2fb23047c7e",
+    "rows": 1271
+  },
+  {
+    "etf": "ISAC",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/251850/ishares-msci-all-country-world-ucits-etf/latest-holdings.csv",
+    "file": "ISAC-latest.csv",
+    "sha256": "a0f4f80317451498f92d6907192d36032aaab552d4d54664636591db7543bdf4",
+    "rows": 1748
+  },
+  {
+    "etf": "IWQU",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/institutional/en/products/270054/ishares-edge-msci-world-quality-factor-ucits-etf/latest-holdings.csv",
+    "file": "IWQU-latest.csv",
+    "sha256": "b25b3547e77673970fbf49fb4bbbc2c6f813a55deb2bd946ff6be36745f2d121",
+    "rows": 319
+  },
+  {
+    "etf": "EIMI",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/264659/ishares-core-msci-em-imi-ucits-etf/latest-holdings.csv",
+    "file": "EIMI-latest.csv",
+    "sha256": "790eac755d0cc4c869ed9abbe42284768e669e682e1e795f09e989086f744dc7",
+    "rows": 2986
+  },
+  {
+    "etf": "IWMO",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/270051/ishares-edge-msci-world-momentum-factor-ucits-etf/latest-holdings.csv",
+    "file": "IWMO-latest.csv",
+    "sha256": "f695f62655968fdfc639910e7bf572174694df123b03eb2a95548b81cac86d34",
+    "rows": 382
+  },
+  {
+    "etf": "CSPX",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/253743/ishares-core-s-p-500-ucits-etf/latest-holdings.csv",
+    "file": "CSPX-latest.csv",
+    "sha256": "febc398b84445019269ac5cd5303120aa76a65d081fc798a51c1fc41c69d4002",
+    "rows": 510
+  },
+  {
+    "etf": "CNDX",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/253741/ishares-nasdaq-100-ucits-etf/latest-holdings.csv",
+    "file": "CNDX-latest.csv",
+    "sha256": "bee77e775ade8dfa375445c1c793fe7d3ab04540a4eea8c2d843f462ccc016c8",
+    "rows": 107
+  },
+  {
+    "etf": "WSML",
+    "status": "complete_issuer",
+    "as_of": "2026-10-30",
+    "source_url": "https://www.ishares.com/uk/individual/en/products/296576/ishares-msci-world-small-cap-ucits-etf/latest-holdings.csv",
+    "file": "WSML-latest.csv",
+    "sha256": "37e4ca4a69d05e8a7a4ab61337fbe7e7a20991f8ac11ce735dfe06e94381789f",
+    "rows": 3596
+  }
+]
