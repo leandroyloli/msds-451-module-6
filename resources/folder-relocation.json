@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-02",
+  "reason": "User requested the official Module 6 folder name and preservation of the former study in temp.",
+  "official_root": "C:/studing/msds-451-module-6",
+  "official_previous_root": "C:/studing/msds-451-checkpoint-b",
+  "archived_origin_root": "C:/studing/msds-451-module-6-temp",
+  "origin_root_at_packaging": "C:/studing/msds-451-module-6",
+  "previews_archive": "C:/studing/msds-451-module-6-temp/packaging-previews",
+  "preservation": "Directories were renamed and previews moved reversibly; no study content was deleted. Scientific source and input hashes remain unchanged by relocation.",
+  "git_status_at_relocation": "No Git initialization, commit, remote, push, publication or submission. Awaiting the user's approval after HTML review.",
+  "subsequent_authorization": "The user later authorized creation of leandroyloli/msds-451-module-6 and an open pull request. No merge or Canvas submission was authorized."
+}

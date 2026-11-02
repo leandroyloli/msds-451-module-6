@@ -1,0 +1,452 @@
+{
+  "created_utc": "2026-11-02T02:37:41.591678+00:00",
+  "source_records": [
+    {
+      "etf": "VOO",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0968/holdings/latest",
+      "file": "VOO-latest.json",
+      "sha256": "887043a20883e48e824348ee55ded4df1441ba0e46586f4e74b41f942c006b23",
+      "rows": 517,
+      "port_id": "0968"
+    },
+    {
+      "etf": "VTI",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0970/holdings/latest",
+      "file": "VTI-latest.json",
+      "sha256": "776cbe670d87a13f8d611afa89186dba9ac1e1e48f376f803b29e484e579ffba",
+      "rows": 3452,
+      "port_id": "0970"
+    },
+    {
+      "etf": "VT",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/3141/holdings/latest",
+      "file": "VT-latest.json",
+      "sha256": "25a2edd9c7afba0afc9f291d04b3ec34224c374b145f0a612ff883bf881a01dc",
+      "rows": 10286,
+      "port_id": "3141"
+    },
+    {
+      "etf": "VUG",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0967/holdings/latest",
+      "file": "VUG-latest.json",
+      "sha256": "61ff272d47d32c87092fdf3c7b7a4dec14a9b912f6fbf03ed8b1d94d9c6533ef",
+      "rows": 140,
+      "port_id": "0967"
+    },
+    {
+      "etf": "VTV",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0966/holdings/latest",
+      "file": "VTV-latest.json",
+      "sha256": "a35534ade6f1f5b0cf03c598bdcac0ed5cc9afe0ef242f2897096f6e0286a25f",
+      "rows": 312,
+      "port_id": "0966"
+    },
+    {
+      "etf": "VB",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0969/holdings/latest",
+      "file": "VB-latest.json",
+      "sha256": "6ba8d728bbd75ad9a99a6d1cf4557604d25b28f4ff541aaf9375c9d57e5f4d96",
+      "rows": 1309,
+      "port_id": "0969"
+    },
+    {
+      "etf": "VYM",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0923/holdings/latest",
+      "file": "VYM-latest.json",
+      "sha256": "6904739ac2546b3efe9d5234d753718ac3b86c1d064d761bc5cab89f32502c48",
+      "rows": 610,
+      "port_id": "0923"
+    },
+    {
+      "etf": "VIG",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0920/holdings/latest",
+      "file": "VIG-latest.json",
+      "sha256": "f154b6e9e2ea0d1ac94d70037c6e8643a7d867d65a8e8bf443e47583958d2125",
+      "rows": 344,
+      "port_id": "0920"
+    },
+    {
+      "etf": "VOOG",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/3341/holdings/latest",
+      "file": "VOOG-latest.json",
+      "sha256": "514c5b0feae4e0f2147d7669b9d6841847b48a45177f7001b99fb3cd7211315d",
+      "rows": 161,
+      "port_id": "3341"
+    },
+    {
+      "etf": "VXUS",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/3369/holdings/latest",
+      "file": "VXUS-latest.json",
+      "sha256": "6256bdaaf2e56b5df3937532b835e5b5f6d1cd65b68dfb29231fadd129ed56fd",
+      "rows": 9210,
+      "port_id": "3369"
+    },
+    {
+      "etf": "VEA",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0936/holdings/latest",
+      "file": "VEA-latest.json",
+      "sha256": "778d187541a02e40cbb6985cea8e104496e64d3e1feb28dacdd0a273d8006a26",
+      "rows": 4051,
+      "port_id": "0936"
+    },
+    {
+      "etf": "VWO",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0964/holdings/latest",
+      "file": "VWO-latest.json",
+      "sha256": "14f7a0f8b685f06f5d9ba5ea9b289d0a59e436be7f7bd131a1451235c9099628",
+      "rows": 6598,
+      "port_id": "0964"
+    },
+    {
+      "etf": "VBR",
+      "status": "complete_issuer",
+      "as_of": "2026-09-30",
+      "source_url": "https://advisors.vanguard.com/investments/products/api/funds/0937/holdings/latest",
+      "file": "VBR-latest.json",
+      "sha256": "6efec5e4135fef10709dd335509f513df46f7e2cec2d14a7fadb6a6ffa368b37",
+      "rows": 837,
+      "port_id": "0937"
+    },
+    {
+      "etf": "IVV",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/239726/ishares-core-s-p-500-etf/latest-holdings.csv",
+      "file": "IVV-latest.csv",
+      "sha256": "987294e1e1f2138e90fb93b029a4fbe1b64f4c6dc26aa06664a9a04131590f10",
+      "rows": 506
+    },
+    {
+      "etf": "ITOT",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/239724/ishares-core-s-p-total-u-s-stock-market-etf/latest-holdings.csv",
+      "file": "ITOT-latest.csv",
+      "sha256": "fd0a59fb27679eca6fe6346dec5b6ffa546151235b5cf8ea4c71b47926c93fe2",
+      "rows": 2446
+    },
+    {
+      "etf": "DGRO",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/264623/ishares-core-dividend-growth-etf/latest-holdings.csv",
+      "file": "DGRO-latest.csv",
+      "sha256": "a2ded41b516d9dc03c0aa604957db78780b3a8404a00bb165bc51013b35d5c77",
+      "rows": 398
+    },
+    {
+      "etf": "DVY",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/239500/ishares-select-dividend-etf/latest-holdings.csv",
+      "file": "DVY-latest.csv",
+      "sha256": "2e3b258c01c1da7f5c2a79f14eb293f3bc1775df44718a8973d8d3d60fdd4d06",
+      "rows": 104
+    },
+    {
+      "etf": "QUAL",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/256101/ishares-msci-usa-quality-factor-etf/latest-holdings.csv",
+      "file": "QUAL-latest.csv",
+      "sha256": "5f8754dc79f5133dccfe9e9c2aa18c02cff14ec8db7462d5b8f56a4be8806166",
+      "rows": 122
+    },
+    {
+      "etf": "IEMG",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/244050/ishares-core-msci-emerging-markets-etf/latest-holdings.csv",
+      "file": "IEMG-latest.csv",
+      "sha256": "fda74c19462cfcff690a466f2f6e987669b55aad53194df8b639cd42fd06532a",
+      "rows": 2888
+    },
+    {
+      "etf": "MTUM",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/251614/ishares-msci-usa-momentum-factor-etf/latest-holdings.csv",
+      "file": "MTUM-latest.csv",
+      "sha256": "dc76be418c1793b2917218ea36c957be0d1700605e6a2ccf424f791330efa2c2",
+      "rows": 129
+    },
+    {
+      "etf": "USMV",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/us/products/239695/ishares-msci-usa-min-vol-factor-etf/latest-holdings.csv",
+      "file": "USMV-latest.csv",
+      "sha256": "0ce22cc1fc39c9dc1f00913d80d5b8b3fa0762f7a14967efe6d76e5a6ddd6b00",
+      "rows": 179
+    },
+    {
+      "etf": "IWDA",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/251882/ishares-core-msci-world-ucits-etf/latest-holdings.csv",
+      "file": "IWDA-latest.csv",
+      "sha256": "beac4685a002937ef154666c83d8ef734119381bed9031232cbad2fb23047c7e",
+      "rows": 1271
+    },
+    {
+      "etf": "ISAC",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/251850/ishares-msci-all-country-world-ucits-etf/latest-holdings.csv",
+      "file": "ISAC-latest.csv",
+      "sha256": "a0f4f80317451498f92d6907192d36032aaab552d4d54664636591db7543bdf4",
+      "rows": 1748
+    },
+    {
+      "etf": "EIMI",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/264659/ishares-core-msci-em-imi-ucits-etf/latest-holdings.csv",
+      "file": "EIMI-latest.csv",
+      "sha256": "790eac755d0cc4c869ed9abbe42284768e669e682e1e795f09e989086f744dc7",
+      "rows": 2986
+    },
+    {
+      "etf": "IWQU",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/institutional/en/products/270054/ishares-edge-msci-world-quality-factor-ucits-etf/latest-holdings.csv",
+      "file": "IWQU-latest.csv",
+      "sha256": "b25b3547e77673970fbf49fb4bbbc2c6f813a55deb2bd946ff6be36745f2d121",
+      "rows": 319
+    },
+    {
+      "etf": "IWMO",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/270051/ishares-edge-msci-world-momentum-factor-ucits-etf/latest-holdings.csv",
+      "file": "IWMO-latest.csv",
+      "sha256": "f695f62655968fdfc639910e7bf572174694df123b03eb2a95548b81cac86d34",
+      "rows": 382
+    },
+    {
+      "etf": "CSPX",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/253743/ishares-core-s-p-500-ucits-etf/latest-holdings.csv",
+      "file": "CSPX-latest.csv",
+      "sha256": "febc398b84445019269ac5cd5303120aa76a65d081fc798a51c1fc41c69d4002",
+      "rows": 510
+    },
+    {
+      "etf": "CNDX",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/253741/ishares-nasdaq-100-ucits-etf/latest-holdings.csv",
+      "file": "CNDX-latest.csv",
+      "sha256": "bee77e775ade8dfa375445c1c793fe7d3ab04540a4eea8c2d843f462ccc016c8",
+      "rows": 107
+    },
+    {
+      "etf": "WSML",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.ishares.com/uk/individual/en/products/296576/ishares-msci-world-small-cap-ucits-etf/latest-holdings.csv",
+      "file": "WSML-latest.csv",
+      "sha256": "37e4ca4a69d05e8a7a4ab61337fbe7e7a20991f8ac11ce735dfe06e94381789f",
+      "rows": 3596
+    },
+    {
+      "etf": "BOVA11",
+      "status": "complete_issuer",
+      "as_of": "2026-10-30",
+      "source_url": "https://www.blackrock.com/br/products/251816/ishares-ibovespa-fundo-de-ndice-fund/1506433276998.ajax?fileType=csv&fileName=BOVA11_holdings&dataType=fund",
+      "file": "BOVA11-latest.csv",
+      "rows": 80
+    },
+    {
+      "etf": "PIBB11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "PIBB11-cvm-202609.csv",
+      "cnpj": "06.323.688/0001-27",
+      "rows": 101,
+      "underlying_note": ""
+    },
+    {
+      "etf": "SMAL11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "SMAL11-cvm-202609.csv",
+      "cnpj": "10.406.600/0001-08",
+      "rows": 212,
+      "underlying_note": ""
+    },
+    {
+      "etf": "GOVE11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "GOVE11-cvm-202609.csv",
+      "cnpj": "11.184.136/0001-15",
+      "rows": 265,
+      "underlying_note": ""
+    },
+    {
+      "etf": "BRAX11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "BRAX11-cvm-202609.csv",
+      "cnpj": "11.455.378/0001-04",
+      "rows": 104,
+      "underlying_note": ""
+    },
+    {
+      "etf": "FIND11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "FIND11-cvm-202609.csv",
+      "cnpj": "11.961.094/0001-81",
+      "rows": 43,
+      "underlying_note": ""
+    },
+    {
+      "etf": "DIVO11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "DIVO11-cvm-202609.csv",
+      "cnpj": "13.416.245/0001-46",
+      "rows": 106,
+      "underlying_note": ""
+    },
+    {
+      "etf": "BBSD11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "BBSD11-cvm-202609.csv",
+      "cnpj": "17.817.528/0001-50",
+      "rows": 59,
+      "underlying_note": ""
+    },
+    {
+      "etf": "IVVB11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "IVVB11-cvm-202609.csv",
+      "cnpj": "19.909.560/0001-91",
+      "rows": 509,
+      "underlying_note": "Feeder expansion uses current underlying snapshot; mixed dates, not historical certification"
+    },
+    {
+      "etf": "BOVV11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "BOVV11-cvm-202609.csv",
+      "cnpj": "21.407.758/0001-19",
+      "rows": 156,
+      "underlying_note": ""
+    },
+    {
+      "etf": "BBOV11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "BBOV11-cvm-202609.csv",
+      "cnpj": "34.606.480/0001-50",
+      "rows": 183,
+      "underlying_note": ""
+    },
+    {
+      "etf": "NASD11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "NASD11-cvm-202609.csv",
+      "cnpj": "35.578.672/0001-63",
+      "rows": 13,
+      "underlying_note": ""
+    },
+    {
+      "etf": "WRLD11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "WRLD11-cvm-202609.csv",
+      "cnpj": "42.280.262/0001-05",
+      "rows": 10298,
+      "underlying_note": "Feeder expansion uses current underlying snapshot; mixed dates, not historical certification"
+    },
+    {
+      "etf": "AUVP11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "AUVP11-cvm-202609.csv",
+      "cnpj": "61.273.759/0001-32",
+      "rows": 62,
+      "underlying_note": ""
+    },
+    {
+      "etf": "VWRA11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "VWRA11-cvm-202609.csv",
+      "cnpj": "61.689.798/0001-15",
+      "rows": 5,
+      "underlying_note": ""
+    },
+    {
+      "etf": "BEST11",
+      "status": "complete_regulator",
+      "as_of": "2026-09-30",
+      "source_url": "https://dados.cvm.gov.br/dados/FI/DOC/CDA/DADOS/cda_fi_202609.zip",
+      "file": "BEST11-cvm-202609.csv",
+      "cnpj": "61.950.414/0001-76",
+      "rows": 41,
+      "underlying_note": ""
+    },
+    {
+      "etf": "SPY",
+      "status": "complete_issuer",
+      "as_of": "2026-10-29",
+      "source_url": "https://www.ssga.com/us/en/individual/etfs/library-content/products/fund-data/etfs/us/holdings-daily-us-en-spy.xlsx",
+      "file": "SPY.xlsx"
+    }
+  ],
+  "holdings_sha256": "31793c33e773eb75c1c11bd487c68705c2fd3d2a0a6fd5c98335804fcc5c1532",
+  "coverage_sha256": "c7b2cfa40d25ac3e1f4194f38420c992286e0416b34bc524f67b253f0ebf0322",
+  "transformations": [
+    "Exclude Vanguard allocationToUnderlyingFunds duplicate of short-term reserves",
+    "Issuer ID groups normalized same issuer name and share classes; unresolved names not guessed",
+    "Sector/currency transferred only on exact ticker and country match; sub-industry mapped when matched primary rows unanimously identify sector",
+    "US domestic equity market currency USD only; no foreign country-to-currency inference"
+  ]
+}

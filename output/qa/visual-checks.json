@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "html_sha256": "9ea7edcd16bf9ac05dfa6faf34c8e31eeecd5214acb303ac93732075a2e3e61b",
+  "checks": [
+    {
+      "viewport": "desktop",
+      "width": 1280,
+      "figures": 3,
+      "typeset_equations": 4,
+      "candidate_rows": 61,
+      "local_links": 14,
+      "duplicate_ids": false,
+      "horizontal_overflow": false,
+      "javascript_errors": []
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "figures": 3,
+      "typeset_equations": 4,
+      "candidate_rows": 61,
+      "local_links": 14,
+      "duplicate_ids": false,
+      "horizontal_overflow": false,
+      "javascript_errors": []
+    }
+  ]
+}

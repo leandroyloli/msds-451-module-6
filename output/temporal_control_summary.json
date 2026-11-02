@@ -1,0 +1,15 @@
+{
+  "terminal": 2.3373860330252656,
+  "cagr": 0.12417195946079396,
+  "annual_mean": 0.13304531047152254,
+  "volatility": 0.1765369085329578,
+  "sharpe": 0.5900133553012746,
+  "max_drawdown": -0.33982675886849223,
+  "worst_day": -0.11273498110751323,
+  "expected_shortfall_95": -0.026989542024926195,
+  "downside_deviation": 0.12707733770478002,
+  "interpretation": "Operationally time-ordered price/liquidity control; no current composition used; surviving universe still retrospective. Does NOT validate historical look-through limits.",
+  "current_composition_used": false,
+  "margin_calls": 0,
+  "bankrupt": false
+}
