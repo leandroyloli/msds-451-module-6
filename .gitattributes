@@ -1,0 +1,2 @@
+# Preserve exact snapshot and source bytes used by the verification manifests.
+* -text

@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.venv/
+.venv-*/
+.uv-cache/
+
+# Frozen inputs and primary source files are included for offline reproduction.
